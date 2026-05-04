@@ -1,1 +1,1 @@
-Bird Planner Binder Template V1. Upload all files to GitHub repo root.
+Bird Planner Binder Calendar V2. Upload all files to GitHub repo root.
