@@ -31,6 +31,10 @@ function render(){
  subtabs.innerHTML=SECTIONS[state.section].tabs.map(t=>`<button class="subtab ${state.tabs[state.section]===t[0]?'active':''}" onclick="setTab('${t[0]}')">${t[1]}</button>`).join('');
  let tab=SECTIONS[state.section].tabs.find(t=>t[0]===state.tabs[state.section]);
  let key=state.section+':'+tab[0];
+ if(state.section === 'schedule' && tab[0] === 'calendar'){
+  content.innerHTML = renderScheduleCalendar();
+  return;
+}
  content.innerHTML=`<div class="titleRow"><div><h2>${tab[1]}</h2><p>${tab[2]}</p></div><div class="note">Blank Page Template</div></div>
  <div class="layout">
   <div class="box"><h3>Main Content Area</h3><p>This is where the ${tab[1]} tools will go.</p><div class="line"></div><div class="line"></div><div class="line"></div><div class="actions"><button class="save">Save</button><button>Add</button><button class="delete">Delete</button><button>Back</button></div></div>
