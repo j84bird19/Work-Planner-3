@@ -68,3 +68,8 @@ textarea.notesArea{min-height:125px}
   .monthBtn{min-width:46px;font-size:12px;padding:7px}
   .calendarTitle h2{font-size:23px}
 }
+.agendaRow.canceled,
+.preview.canceled {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
