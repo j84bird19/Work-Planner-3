@@ -1,1 +1,22 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bird Planner</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#050505"><link rel="apple-touch-icon" href="icon-192.png"><link rel="stylesheet" href="style.css"></head><body><div class="app"><header><div><h1>BIRD PLANNER</h1><p id="subtitle"></p></div><button onclick="backup()">Backup</button></header><div class="binder"><main class="page"><div id="subtabs" class="subtabs"></div><section id="content" class="paper"></section></main><nav class="sideTabs"><button class="sideTab active" data-section="schedule" onclick="setSection('schedule')">Schedule</button><button class="sideTab" data-section="clients" onclick="setSection('clients')">Clients</button><button class="sideTab" data-section="supplies" onclick="setSection('supplies')">Supplies</button><button class="sideTab" data-section="banking" onclick="setSection('banking')">Banking</button></nav></div></div><script src="app.js"></script></body></html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bird Planner</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header><div><h1>BIRD PLANNER</h1><p id="subtitle"></p></div><button onclick="backup()">Backup</button></header>
+<div class="binder">
+<main class="page"><div id="subtabs" class="subtabs"></div><section id="content" class="paper"></section></main>
+<nav class="sideTabs">
+<button class="sideTab active" data-section="schedule" onclick="setSection('schedule')">Schedule</button>
+<button class="sideTab" data-section="clients" onclick="setSection('clients')">Clients</button>
+<button class="sideTab" data-section="supplies" onclick="setSection('supplies')">Supplies</button>
+<button class="sideTab" data-section="banking" onclick="setSection('banking')">Banking</button>
+</nav></div></div>
+<script src="app.js"></script>
+</body></html>
