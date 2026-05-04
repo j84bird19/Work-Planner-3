@@ -53,12 +53,26 @@ function render(){
  document.querySelectorAll('.sideTab').forEach(b=>b.classList.toggle('active',b.dataset.section===state.section));
  subtitle.textContent=SECTIONS[state.section].sub;
  subtabs.innerHTML=SECTIONS[state.section].tabs.map(t=>`<button class="subtab ${state.tabs[state.section]===t[0]?'active':''}" onclick="setTab('${t[0]}')">${t[1]}</button>`).join('');
- let tab=SECTIONS[state.section].tabs.find(t=>t[0]===state.tabs[state.section]);
+ let tab = SECTIONS[state.section].tabs.find(t => t[0] === state.tabs[state.section]);
 
- if(state.section==='schedule' && tab[0]==='calendar'){
-   content.innerHTML=renderScheduleCalendar();
-   return;
- }
+// 👇 MUST be ABOVE template
+if(state.section==='schedule' && tab[0]==='calendar'){
+  content.innerHTML = renderScheduleCalendar();
+  return;
+}
+
+if(state.section==='schedule' && tab[0]==='newJob'){
+  content.innerHTML = renderJobForm();
+  return;
+}
+
+if(state.section==='schedule' && tab[0]==='newEvent'){
+  content.innerHTML = renderEventForm();
+  return;
+}
+
+// 👇 this stays LAST
+content.innerHTML = pageTemplate(state.section, tab);
 
  content.innerHTML=pageTemplate(state.section,tab);
 }
