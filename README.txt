@@ -1,1 +1,1 @@
-Bird Planner Clients Sync V5. Upload all files to repo root.
+Verified Clients Sync V5. Upload all files to repo root.
