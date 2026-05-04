@@ -114,49 +114,51 @@ function renderScheduleCalendar(){
    </div>
  </div>`;
 }
-function renderJobForm(){
-  return `
-    <h2>New Job Entry</h2>
+function saveJob(){
+  let date = document.getElementById('jobDate').value;
+  let title = document.getElementById('jobTitle').value;
+  let time = document.getElementById('jobStart').value;
 
-    <label>Date</label>
-    <input id="jobDate" type="date">
+  if(!date || !title) return;
 
-    <label>Type</label>
-    <select id="jobType">
-      <option value="scheduled">Scheduled Job</option>
-      <option value="completed">Completed Job</option>
-    </select>
+  let d = ensureDay(date);
+  d.agenda.push({ 
+    time: time, 
+    title: title,
+    type: 'job'
+  });
 
-    <label>Title</label>
-    <input id="jobTitle" placeholder="Weed Eating">
+  state.selectedDate = date;
 
-    <label>Start Time</label>
-    <input id="jobStart" placeholder="8a">
+  let parts = parseKey(date);
+  state.year = parts.y;
+  state.month = parts.m;
 
-    <label>End Time</label>
-    <input id="jobEnd">
-
-    <label>Client</label>
-    <input id="jobClient">
-
-    <button onclick="saveJob()">Save</button>
-  `;
+  save();
+  setTab('calendar');
 }
-function renderEventForm(){
-  return `
-    <h2>New Event</h2>
+function saveEvent(){
+  let date = document.getElementById('eventDate').value;
+  let title = document.getElementById('eventTitle').value;
+  let time = document.getElementById('eventTime').value;
 
-    <label>Date</label>
-    <input id="eventDate" type="date">
+  if(!date || !title) return;
 
-    <label>Title</label>
-    <input id="eventTitle">
+  let d = ensureDay(date);
+  d.agenda.push({ 
+    time: time, 
+    title: title,
+    type: 'event'
+  });
 
-    <label>Time</label>
-    <input id="eventTime">
+  state.selectedDate = date;
 
-    <button onclick="saveEvent()">Save</button>
-  `;
+  let parts = parseKey(date);
+  state.year = parts.y;
+  state.month = parts.m;
+
+  save();
+  setTab('calendar');
 }
 function setCalendarMonth(m){state.month=m;state.selectedDate=makeKey(state.year,m,1);save();render()}
 function changeCalendarYear(n){state.year+=n;state.selectedDate=makeKey(state.year,state.month,1);save();render()}
