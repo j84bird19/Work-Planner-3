@@ -114,7 +114,50 @@ function renderScheduleCalendar(){
    </div>
  </div>`;
 }
+function renderJobForm(){
+  return `
+    <h2>New Job Entry</h2>
 
+    <label>Date</label>
+    <input id="jobDate" type="date">
+
+    <label>Type</label>
+    <select id="jobType">
+      <option value="scheduled">Scheduled Job</option>
+      <option value="completed">Completed Job</option>
+    </select>
+
+    <label>Title</label>
+    <input id="jobTitle" placeholder="Weed Eating">
+
+    <label>Start Time</label>
+    <input id="jobStart" placeholder="8a">
+
+    <label>End Time</label>
+    <input id="jobEnd">
+
+    <label>Client</label>
+    <input id="jobClient">
+
+    <button onclick="saveJob()">Save</button>
+  `;
+}
+function renderEventForm(){
+  return `
+    <h2>New Event</h2>
+
+    <label>Date</label>
+    <input id="eventDate" type="date">
+
+    <label>Title</label>
+    <input id="eventTitle">
+
+    <label>Time</label>
+    <input id="eventTime">
+
+    <button onclick="saveEvent()">Save</button>
+  `;
+}
 function setCalendarMonth(m){state.month=m;state.selectedDate=makeKey(state.year,m,1);save();render()}
 function changeCalendarYear(n){state.year+=n;state.selectedDate=makeKey(state.year,state.month,1);save();render()}
 function selectCalendarDay(k){state.selectedDate=k;save();render()}
@@ -126,6 +169,18 @@ function addAgenda(){
  d.agenda.push({time,title});
  sortAgenda(d.agenda);
  save();render();
+}
+function saveJob(){
+  let date = document.getElementById('jobDate').value;
+  let title = document.getElementById('jobTitle').value;
+  let time = document.getElementById('jobStart').value;
+
+  if(!state.calendarData) state.calendarData = {};
+  if(!state.calendarData[date]) state.calendarData[date] = [];
+
+  state.calendarData[date].push({time,title});
+  save();
+  setTab('calendar');
 }
 function updateAgenda(idx,key,value){let d=ensureDay(state.selectedDate);d.agenda[idx][key]=value;sortAgenda(d.agenda);save();renderCalendarOnlySoon()}
 function deleteAgenda(idx){let d=ensureDay(state.selectedDate);d.agenda.splice(idx,1);save();render()}
