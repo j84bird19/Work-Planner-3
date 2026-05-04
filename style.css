@@ -1,1 +1,369 @@
-*{box-sizing:border-box}body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;padding:8px}button{border:0;border-radius:10px;background:#242424;color:white;font-weight:bold;padding:10px 12px}.app{max-width:1200px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}h1{margin:0;color:#8ffcff}.binder{display:grid;grid-template-columns:1fr 82px;margin-top:10px}.page{min-height:78vh;border:2px solid #555;border-radius:18px 0 0 18px;background:#101010;padding:12px}.sideTabs{display:flex;flex-direction:column;gap:10px;padding-top:48px}.sideTab{writing-mode:vertical-rl;transform:none;height:112px;width:58px;margin-left:-2px;border:2px solid #555;border-left:0;border-radius:0 16px 16px 0;background:#191919}.sideTab.active{background:#00d084;color:#001b10;border-color:#00d084}.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.subtab{background:#222;border:1px solid #444}.subtab.active{background:#0099ff}.paper{min-height:66vh;background:#fff4dc;color:#21170d;border:2px solid #d4bc91;border-radius:16px;padding:14px}.titleRow{display:flex;justify-content:space-between;border-bottom:2px solid #d4bc91;padding-bottom:8px;margin-bottom:12px}h2{margin:0;font-family:Georgia,serif}.layout{display:grid;grid-template-columns:1fr 300px;gap:12px}.box,.dailyBox{border:2px solid #b79a63;border-radius:14px;background:rgba(255,255,255,.45);padding:12px}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.save{background:#00d084;color:#001b10}.delete{background:#ef4444}.note{color:#715833;font-size:13px}input,select,textarea{width:100%;border:1px solid #b79a63;border-radius:9px;padding:9px;background:#fff;color:#111;font:inherit}textarea{min-height:90px}label{display:block;margin:8px 0 3px;color:#715833;font-size:11px;text-transform:uppercase;font-weight:bold}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.monthTabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px}.monthBtn{min-width:54px;background:#111;border:1px solid #333;color:white;padding:8px}.monthBtn.active{background:#00d084;color:#001b10}.calendarTitle{display:flex;justify-content:space-between;align-items:center;gap:8px}.weekdays,.calendarGrid{display:grid;grid-template-columns:repeat(7,1fr)}.weekdays div{font-size:11px;font-weight:bold;text-align:center;color:#715833;padding:5px}.calDay{min-height:82px;border:1px solid #cdb682;background:rgba(255,255,255,.45);padding:4px;overflow:hidden;cursor:pointer}.calDay.blank{background:rgba(255,255,255,.15)}.calDay.today{outline:2px solid #0099ff;outline-offset:-2px}.calDay.selected{background:#dff8ed;outline:2px solid #00d084;outline-offset:-2px}.dayNum{font-weight:bold;font-size:12px}.preview{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;background:rgba(0,0,0,.08);border-radius:4px;padding:2px}.preview.canceled{text-decoration:line-through;opacity:.55}.dayBottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.agendaRow{display:grid;grid-template-columns:1fr 34px;gap:5px;align-items:center;margin:5px 0;background:rgba(255,255,255,.45);border:1px solid #d2bb86;border-radius:8px;padding:6px}.agendaRow.canceled span{text-decoration:line-through;opacity:.55}.taskRow{display:grid;grid-template-columns:26px 1fr 34px;gap:5px;align-items:center;margin:5px 0}.taskRow.done input[type=text]{text-decoration:line-through;color:#777}.smallBtn{padding:8px;background:#222;color:white}.addRow{display:grid;grid-template-columns:70px 1fr 70px;gap:5px;margin-top:8px}.addTaskRow{display:grid;grid-template-columns:1fr 70px;gap:5px;margin-top:8px}@media(max-width:720px){.binder{grid-template-columns:1fr 54px}.sideTab{width:46px;height:88px;font-size:12px}.layout,.dayBottom,.three{grid-template-columns:1fr}.calDay{min-height:66px}.monthBtn{min-width:46px;font-size:12px;padding:7px}}
+*{
+  box-sizing:border-box
+}
+
+body{
+  margin:0;
+  background:#050505;
+  color:white;
+  font-family:Arial,sans-serif;
+  padding:8px
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  background:#242424;
+  color:white;
+  font-weight:bold;
+  padding:10px 12px
+}
+
+.app{
+  max-width:1200px;
+  margin:auto
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+h1{
+  margin:0;
+  color:#8ffcff
+}
+
+.binder{
+  display:grid;
+  grid-template-columns:1fr 70px;
+  margin-top:10px
+}
+
+.page{
+  min-height:78vh;
+  border:2px solid #555;
+  border-radius:18px 0 0 18px;
+  background:#101010;
+  padding:12px
+}
+
+/* 🔥 FULL HEIGHT SIDE TABS */
+.sideTabs{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:0;
+  gap:0;
+}
+
+.sideTab{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  flex:1;
+  width:70px;
+  border:2px solid #555;
+  border-left:0;
+  border-radius:0;
+  background:#191919;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.sideTab.active{
+  background:#00d084;
+  color:#001b10;
+  border-color:#00d084;
+}
+
+/* 🔥 FULL WIDTH TOP TABS */
+.subtabs{
+  display:flex;
+  width:100%;
+  gap:6px;
+  margin-bottom:10px;
+}
+
+.subtab{
+  flex:1;
+  padding:12px;
+  font-size:14px;
+  border-radius:10px 10px 0 0;
+  background:#222;
+  border:1px solid #444;
+}
+
+.subtab.active{
+  background:#0099ff;
+}
+
+.paper{
+  min-height:66vh;
+  background:#fff4dc;
+  color:#21170d;
+  border:2px solid #d4bc91;
+  border-radius:16px;
+  padding:14px
+}
+
+.titleRow{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:2px solid #d4bc91;
+  padding-bottom:8px;
+  margin-bottom:12px
+}
+
+h2{
+  margin:0;
+  font-family:Georgia,serif
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:12px
+}
+
+.box,.dailyBox{
+  border:2px solid #b79a63;
+  border-radius:14px;
+  background:rgba(255,255,255,.45);
+  padding:12px
+}
+
+.actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:10px
+}
+
+.save{
+  background:#00d084;
+  color:#001b10
+}
+
+.delete{
+  background:#ef4444
+}
+
+.note{
+  color:#715833;
+  font-size:13px
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid #b79a63;
+  border-radius:9px;
+  padding:9px;
+  background:#fff;
+  color:#111;
+  font:inherit
+}
+
+textarea{
+  min-height:90px
+}
+
+label{
+  display:block;
+  margin:8px 0 3px;
+  color:#715833;
+  font-size:11px;
+  text-transform:uppercase;
+  font-weight:bold
+}
+
+.three{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+
+/* CALENDAR */
+
+.monthTabs{
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+  padding-bottom:6px;
+  margin-bottom:8px
+}
+
+.monthBtn{
+  min-width:54px;
+  background:#111;
+  border:1px solid #333;
+  color:white;
+  padding:8px
+}
+
+.monthBtn.active{
+  background:#00d084;
+  color:#001b10
+}
+
+.calendarTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px
+}
+
+.weekdays,.calendarGrid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr)
+}
+
+.weekdays div{
+  font-size:11px;
+  font-weight:bold;
+  text-align:center;
+  color:#715833;
+  padding:5px
+}
+
+.calDay{
+  min-height:82px;
+  border:1px solid #cdb682;
+  background:rgba(255,255,255,.45);
+  padding:4px;
+  overflow:hidden;
+  cursor:pointer
+}
+
+.calDay.blank{
+  background:rgba(255,255,255,.15)
+}
+
+.calDay.today{
+  outline:2px solid #0099ff;
+  outline-offset:-2px
+}
+
+.calDay.selected{
+  background:#dff8ed;
+  outline:2px solid #00d084;
+  outline-offset:-2px
+}
+
+.dayNum{
+  font-weight:bold;
+  font-size:12px
+}
+
+.preview{
+  font-size:10px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:2px;
+  background:rgba(0,0,0,.08);
+  border-radius:4px;
+  padding:2px
+}
+
+.preview.canceled{
+  text-decoration:line-through;
+  opacity:.55
+}
+
+.dayBottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px
+}
+
+.agendaRow{
+  display:grid;
+  grid-template-columns:1fr 34px;
+  gap:5px;
+  align-items:center;
+  margin:5px 0;
+  background:rgba(255,255,255,.45);
+  border:1px solid #d2bb86;
+  border-radius:8px;
+  padding:6px
+}
+
+.agendaRow.canceled span{
+  text-decoration:line-through;
+  opacity:.55
+}
+
+.taskRow{
+  display:grid;
+  grid-template-columns:26px 1fr 34px;
+  gap:5px;
+  align-items:center;
+  margin:5px 0
+}
+
+.taskRow.done input[type=text]{
+  text-decoration:line-through;
+  color:#777
+}
+
+.smallBtn{
+  padding:8px;
+  background:#222;
+  color:white
+}
+
+.addRow{
+  display:grid;
+  grid-template-columns:70px 1fr 70px;
+  gap:5px;
+  margin-top:8px
+}
+
+.addTaskRow{
+  display:grid;
+  grid-template-columns:1fr 70px;
+  gap:5px;
+  margin-top:8px
+}
+
+/* MOBILE */
+
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:1fr 55px
+  }
+
+  .sideTab{
+    width:55px;
+    font-size:12px
+  }
+
+  .layout,
+  .dayBottom,
+  .three,
+  .two{
+    grid-template-columns:1fr
+  }
+
+  .calDay{
+    min-height:66px
+  }
+
+  .monthBtn{
+    min-width:46px;
+    font-size:12px;
+    padding:7px
+  }
+}
