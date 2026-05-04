@@ -175,10 +175,17 @@ function saveJob(){
   let title = document.getElementById('jobTitle').value;
   let time = document.getElementById('jobStart').value;
 
-  if(!state.calendarData) state.calendarData = {};
-  if(!state.calendarData[date]) state.calendarData[date] = [];
+  if(!date || !title) return;
 
-  state.calendarData[date].push({time,title});
+  let d = ensureDay(date);
+  d.agenda.push({ time: time, title: title });
+
+  state.selectedDate = date;
+
+  let parts = parseKey(date);
+  state.year = parts.y;
+  state.month = parts.m;
+
   save();
   setTab('calendar');
 }
