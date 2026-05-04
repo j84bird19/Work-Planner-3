@@ -1,1 +1,1 @@
-Fixed schedule files. Upload all files to repo root.
+Bird Planner Clients Sync V5. Upload all files to repo root.
