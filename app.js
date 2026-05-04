@@ -4,9 +4,10 @@ const FULL_MONTHS=['January','February','March','April','May','June','July','Aug
 
 const SECTIONS={
  schedule:{sub:'Schedule / Calendar + Agenda',tabs:[
-  ['calendar','Calendar + Agenda','Calendar view and selected day agenda area.'],
-  ['add','Add Job/Event/Tasks','Blank page for adding job, event, and simple daily tasks.']
- ]},
+  ['calendar','Calendar + Agenda','Calendar view, agenda, and tasks'],
+  ['newJob','New Job Entry','Add scheduled or completed jobs'],
+  ['newEvent','New Event Entry','Add personal events']
+]},
  clients:{sub:'Clients / Directory',tabs:[
   ['directory','Directory','Alphabetical client list.'],
   ['client','Client','Selected client record and totals.'],
