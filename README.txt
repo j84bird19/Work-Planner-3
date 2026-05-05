@@ -1,7 +1,9 @@
-Bird Planner V17 Soft Folder Tabs
+Bird Planner V18 Custom Folder Colors
 
-Controlled realistic folder-tab styling:
-- Slight overlap/stagger, not too dramatic
-- Active tab pulls forward like a real folder tab
-- Section colors stay visible
-- Top tabs cleaned up to keep folder feel
+Updates:
+- Vertical section tabs cover the full binder edge.
+- Vertical tab font scaled larger to fill tabs.
+- User can choose folder color per section.
+- Horizontal inner tabs auto-generate gradient from section color.
+- Folder/page background tints to selected section color.
+- Horizontal tabs visually connect to page.

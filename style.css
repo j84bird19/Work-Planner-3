@@ -818,3 +818,212 @@ body:has(.sideTab[data-section="banking"].active) .subtab.active{
   .sideTab:nth-child(3){top:232px !important;}
   .sideTab:nth-child(4){top:348px !important;}
 }
+
+
+/* ===== V18 CUSTOM FOLDER COLORS + CONNECTED TABS ===== */
+
+/* Dynamic section colors */
+.sideTab[data-section="schedule"]{background:linear-gradient(90deg,var(--scheduleColor),color-mix(in srgb,var(--scheduleColor) 65%,#fff)) !important;}
+.sideTab[data-section="clients"]{background:linear-gradient(90deg,var(--clientsColor),color-mix(in srgb,var(--clientsColor) 65%,#fff)) !important;}
+.sideTab[data-section="supplies"]{background:linear-gradient(90deg,var(--suppliesColor),color-mix(in srgb,var(--suppliesColor) 65%,#fff)) !important;}
+.sideTab[data-section="banking"]{background:linear-gradient(90deg,var(--bankingColor),color-mix(in srgb,var(--bankingColor) 65%,#fff)) !important;}
+
+/* Binder edge full coverage */
+.binder{
+  grid-template-columns:minmax(0,1fr) 74px !important;
+  overflow:visible !important;
+}
+
+.sideTabs{
+  display:grid !important;
+  grid-template-rows:repeat(4,1fr) !important;
+  gap:0 !important;
+  height:calc(100dvh - 80px) !important;
+  min-height:calc(100dvh - 80px) !important;
+  padding:0 !important;
+  overflow:visible !important;
+  background:#0d0d0d !important;
+}
+
+/* Equal full-edge vertical folder tabs */
+.sideTab{
+  position:relative !important;
+  top:auto !important;
+  right:0 !important;
+  width:74px !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:none !important;
+  border-radius:0 22px 22px 0 !important;
+  clip-path:polygon(0 0,78% 0,100% 10%,100% 90%,78% 100%,0 100%) !important;
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  text-orientation:mixed !important;
+  font-size:26px !important;
+  letter-spacing:1px !important;
+  line-height:1 !important;
+  color:#fff !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.55) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-shadow:
+    5px 0 9px rgba(0,0,0,.35),
+    inset -5px 0 10px rgba(255,255,255,.18),
+    inset 4px 0 7px rgba(0,0,0,.14) !important;
+  filter:saturate(.78) brightness(.84);
+  z-index:3 !important;
+}
+
+/* Slight folder-stacked feel without losing full edge coverage */
+.sideTab:nth-child(1){z-index:8 !important;}
+.sideTab:nth-child(2){z-index:7 !important;margin-top:-8px !important;}
+.sideTab:nth-child(3){z-index:6 !important;margin-top:-8px !important;}
+.sideTab:nth-child(4){z-index:5 !important;margin-top:-8px !important;}
+
+/* Active section tab is front folder tab */
+.sideTab.active{
+  width:84px !important;
+  right:-10px !important;
+  filter:none !important;
+  z-index:20 !important;
+  box-shadow:
+    8px 0 14px rgba(0,0,0,.45),
+    inset -7px 0 12px rgba(255,255,255,.24),
+    inset 3px 0 7px rgba(0,0,0,.12) !important;
+}
+
+/* Active tab connector into page */
+.sideTab.active::before{
+  content:"";
+  position:absolute;
+  left:-8px;
+  top:0;
+  width:12px;
+  height:100%;
+  background:inherit;
+  z-index:-1;
+}
+
+/* Folder body changes with selected section */
+.paper{
+  background:linear-gradient(180deg,var(--activeSectionLight),#fff4dc 34%,#fff4dc) !important;
+  border-color:var(--activeSectionColor) !important;
+  box-shadow:inset 0 8px 0 var(--activeSectionColor), 0 0 0 1px rgba(0,0,0,.15) !important;
+}
+
+/* Main page should visually tuck under folder tabs */
+.page{
+  border-right:0 !important;
+  box-shadow:4px 0 10px rgba(0,0,0,.36) !important;
+}
+
+/* Horizontal tabs connected to page */
+.subtabs{
+  display:flex !important;
+  width:100% !important;
+  gap:0 !important;
+  margin-bottom:0 !important;
+  align-items:flex-end !important;
+  padding-left:0 !important;
+  overflow:visible !important;
+}
+
+.subtab{
+  flex:1 !important;
+  min-height:62px !important;
+  margin-right:-4px !important;
+  border:0 !important;
+  border-radius:20px 20px 0 0 !important;
+  clip-path:polygon(0 0,88% 0,100% 100%,0 100%) !important;
+  box-shadow:
+    3px -4px 8px rgba(0,0,0,.28),
+    inset 0 5px 9px rgba(255,255,255,.18) !important;
+  color:white !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.48) !important;
+  font-size:23px !important;
+  padding:16px 10px !important;
+  line-height:1.05 !important;
+  z-index:2;
+}
+
+/* Auto gradient for inner tabs based on active section color */
+.subtab:nth-child(1){background:linear-gradient(180deg,var(--activeSectionLight),var(--activeSectionMid)) !important;}
+.subtab:nth-child(2){background:linear-gradient(180deg,var(--activeSectionMid),var(--activeSectionColor)) !important;}
+.subtab:nth-child(3){background:linear-gradient(180deg,var(--activeSectionColor),var(--activeSectionDark)) !important;}
+.subtab:nth-child(4){background:linear-gradient(180deg,var(--activeSectionDark),#111) !important;}
+
+.subtab.active{
+  transform:translateY(3px) !important;
+  color:#050505 !important;
+  text-shadow:none !important;
+  z-index:10 !important;
+  box-shadow:
+    3px -5px 10px rgba(0,0,0,.32),
+    inset 0 6px 10px rgba(255,255,255,.25) !important;
+}
+
+/* Paper connects directly to selected horizontal tab */
+.paper{
+  border-top-left-radius:0 !important;
+  border-top-right-radius:16px !important;
+}
+
+/* Color picker bar */
+.colorBar{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  background:#101010;
+  border-left:2px solid var(--activeSectionColor);
+  border-right:2px solid var(--activeSectionColor);
+  padding:6px 10px;
+  color:#ddd;
+  font-size:15px;
+}
+.colorBar input[type="color"]{
+  width:46px !important;
+  height:34px !important;
+  min-height:34px !important;
+  padding:2px !important;
+  border-radius:8px;
+  border:1px solid #555;
+}
+
+/* Mobile */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 60px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 72px) !important;
+    min-height:calc(100dvh - 72px) !important;
+  }
+
+  .sideTab{
+    width:60px !important;
+    font-size:21px !important;
+    letter-spacing:.5px !important;
+    border-radius:0 18px 18px 0 !important;
+  }
+
+  .sideTab.active{
+    width:68px !important;
+    right:-8px !important;
+  }
+
+  .subtab{
+    min-height:54px !important;
+    font-size:19px !important;
+    padding:14px 7px !important;
+  }
+
+  .colorBar{
+    font-size:13px;
+    padding:5px 8px;
+  }
+}
