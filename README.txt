@@ -1,10 +1,9 @@
-Bird Planner Supplies Fix V9
+Bird Planner Supply Sync V12
 
-Fixes:
-- Supplies list starts blank with Add Supply quick item creation.
-- Removed Inventory tab.
-- Supply item page layout: image left, details right, trackers stay on top.
-- Add Inventory button/log updates quantity remaining and YTD spent.
-- Receipt detail page has Save/Back and stable navigation.
-- Side and top tabs larger; side tab text flipped inward.
-- Keeps schedule, clients, invoices, supplies, fullscreen layout.
+Adds/fixes:
+- Add Inventory correctly updates quantity remaining, price per unit, and YTD spent.
+- Invoice supply usage now uses quantity used.
+- Invoice supply charge = price per unit × quantity used.
+- Invoice/client invoice supply usage subtracts from quantity remaining.
+- Supply totals include purchases and invoice usage.
+- Keeps barcode scan button from V11.

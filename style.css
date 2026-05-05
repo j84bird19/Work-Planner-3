@@ -167,3 +167,18 @@ header{
     grid-template-columns:1fr;
   }
 }
+
+/* ===== V10 CLIENT EMBEDDED INVOICE ===== */
+.clientInvoiceEmbed{
+  margin:10px 0 16px;
+}
+.embeddedInvoice{
+  border-style:solid;
+}
+.miniTitle{
+  margin-bottom:8px;
+}
+.smallReceipt{
+  margin-top:12px;
+  background:rgba(255,255,255,.75);
+}
