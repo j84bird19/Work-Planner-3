@@ -1,1 +1,1 @@
-self.addEventListener('install',e=>self.skipWaiting());
+const C='bird-planner-full-invoice-v6-rebuild';const F=['./','./index.html','./style.css','./app.js','./manifest.json'];self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(F)));self.skipWaiting()});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})

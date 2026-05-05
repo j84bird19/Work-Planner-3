@@ -1,1 +1,1 @@
-Verified Clients Sync V5. Upload all files to repo root.
+Bird Planner Full Invoice V6 Rebuild. Upload all files to repo root.
