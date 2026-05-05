@@ -1,4 +1,4 @@
-const KEY='bird_planner_v16_folder_tabs';
+const KEY='bird_planner_v17_soft_folder_tabs';
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const FULL_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const SECTIONS={

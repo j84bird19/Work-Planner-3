@@ -1,8 +1,7 @@
-Bird Planner V16 Folder Tabs
+Bird Planner V17 Soft Folder Tabs
 
-Realistic folder tab visual update:
-- Layered curved side tabs
-- Active section tab pulls forward
-- Section colors retained
-- Top tabs also styled like folder tabs
-- Keeps previous functionality from V14 base
+Controlled realistic folder-tab styling:
+- Slight overlap/stagger, not too dramatic
+- Active tab pulls forward like a real folder tab
+- Section colors stay visible
+- Top tabs cleaned up to keep folder feel

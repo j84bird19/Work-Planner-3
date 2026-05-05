@@ -590,3 +590,231 @@ body:has(.sideTab[data-section="banking"].active) .subtab.active{
   .sideTab:nth-child(3){top:212px !important;}
   .sideTab:nth-child(4){top:318px !important;}
 }
+
+
+/* ===== V17 SOFT REALISTIC FOLDER TABS ===== */
+/* Controlled overlap: enough folder feel, not too dramatic */
+
+.binder{
+  grid-template-columns:minmax(0,1fr) 68px !important;
+  overflow:visible !important;
+}
+
+.page{
+  position:relative !important;
+  z-index:3 !important;
+  border-right:0 !important;
+  border-radius:18px 0 0 18px !important;
+}
+
+.sideTabs{
+  position:relative !important;
+  display:block !important;
+  height:calc(100dvh - 80px) !important;
+  min-height:560px !important;
+  padding:0 !important;
+  overflow:visible !important;
+  z-index:2 !important;
+  background:transparent !important;
+}
+
+/* Soft curved folder tabs */
+.sideTab{
+  position:absolute !important;
+  right:0 !important;
+  width:68px !important;
+  height:168px !important;
+  margin:0 !important;
+  padding:0 !important;
+
+  border:none !important;
+  border-radius:0 26px 26px 0 !important;
+
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  text-orientation:mixed !important;
+
+  font-size:20px !important;
+  line-height:1 !important;
+  letter-spacing:1px !important;
+  font-weight:bold !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+
+  color:white !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.55);
+
+  /* soft folder tab cut */
+  clip-path:polygon(
+    0 0,
+    76% 0,
+    100% 12%,
+    100% 88%,
+    76% 100%,
+    0 100%
+  );
+
+  box-shadow:
+    4px 4px 9px rgba(0,0,0,.35),
+    inset -5px 0 8px rgba(255,255,255,.16),
+    inset 4px 0 6px rgba(0,0,0,.14);
+
+  transition:all .18s ease;
+}
+
+/* Controlled stagger. Tabs overlap by about 14px */
+.sideTab:nth-child(1){
+  top:0px !important;
+  z-index:7 !important;
+}
+.sideTab:nth-child(2){
+  top:154px !important;
+  z-index:6 !important;
+}
+.sideTab:nth-child(3){
+  top:308px !important;
+  z-index:5 !important;
+}
+.sideTab:nth-child(4){
+  top:462px !important;
+  z-index:4 !important;
+}
+
+/* Folder colors */
+.sideTab[data-section="schedule"]{
+  background:linear-gradient(90deg,#009b5f 0%,#00d084 72%,#65ffc5 100%) !important;
+}
+.sideTab[data-section="clients"]{
+  background:linear-gradient(90deg,#006fbf 0%,#0099ff 72%,#77d7ff 100%) !important;
+}
+.sideTab[data-section="supplies"]{
+  background:linear-gradient(90deg,#bf7200 0%,#f59e0b 72%,#ffd166 100%) !important;
+}
+.sideTab[data-section="banking"]{
+  background:linear-gradient(90deg,#7e22ce 0%,#a855f7 72%,#d8b4fe 100%) !important;
+}
+
+/* Inactive tabs look slightly behind */
+.sideTab:not(.active){
+  filter:saturate(.88) brightness(.86);
+  right:-2px !important;
+}
+
+/* Active tab comes forward and touches/overlaps page edge a little */
+.sideTab.active{
+  right:-7px !important;
+  width:76px !important;
+  z-index:20 !important;
+  filter:none !important;
+  box-shadow:
+    7px 6px 14px rgba(0,0,0,.42),
+    inset -6px 0 9px rgba(255,255,255,.22),
+    inset 3px 0 6px rgba(0,0,0,.12);
+}
+
+/* Active tab gets a small left connector so it feels inserted into folder/page */
+.sideTab.active::before{
+  content:"";
+  position:absolute;
+  left:-6px;
+  top:0;
+  width:12px;
+  height:100%;
+  background:inherit;
+  z-index:-1;
+}
+
+/* Top tabs: keep the file-tab feel but not overly skewed */
+.subtabs{
+  align-items:flex-end !important;
+  gap:4px !important;
+  padding-left:0 !important;
+  overflow:visible !important;
+}
+
+.subtab{
+  position:relative !important;
+  flex:1 !important;
+  min-height:52px !important;
+  margin-right:0 !important;
+  border:1px solid #333 !important;
+  border-bottom:0 !important;
+  border-radius:16px 16px 0 0 !important;
+  clip-path:none !important;
+  box-shadow:2px -2px 6px rgba(0,0,0,.25), inset 0 4px 8px rgba(255,255,255,.10) !important;
+  background:#1f1f1f !important;
+  color:white !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+  font-size:19px !important;
+  padding:13px 8px !important;
+}
+
+.subtab.active{
+  transform:translateY(2px);
+  color:#050505 !important;
+  text-shadow:none !important;
+  z-index:8 !important;
+}
+
+body:has(.sideTab[data-section="schedule"].active) .subtab.active{
+  background:#00d084 !important;
+}
+body:has(.sideTab[data-section="clients"].active) .subtab.active{
+  background:#0099ff !important;
+}
+body:has(.sideTab[data-section="supplies"].active) .subtab.active{
+  background:#f59e0b !important;
+}
+body:has(.sideTab[data-section="banking"].active) .subtab.active{
+  background:#a855f7 !important;
+}
+
+/* Mobile tuning */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 58px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 72px) !important;
+    min-height:520px !important;
+  }
+
+  .sideTab{
+    width:58px !important;
+    height:144px !important;
+    font-size:17px !important;
+    letter-spacing:.5px !important;
+  }
+
+  .sideTab.active{
+    width:66px !important;
+    right:-6px !important;
+  }
+
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:132px !important;}
+  .sideTab:nth-child(3){top:264px !important;}
+  .sideTab:nth-child(4){top:396px !important;}
+
+  .subtab{
+    font-size:17px !important;
+    min-height:48px !important;
+    padding:12px 6px !important;
+  }
+}
+
+/* Short screens: tighten vertical spacing */
+@media(max-height:680px){
+  .sideTab{
+    height:126px !important;
+    font-size:15px !important;
+  }
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:116px !important;}
+  .sideTab:nth-child(3){top:232px !important;}
+  .sideTab:nth-child(4){top:348px !important;}
+}
