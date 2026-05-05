@@ -1,12 +1,10 @@
-Bird Planner Fullscreen V8
+Bird Planner Supplies Fix V9
 
-Includes updates through:
-- Schedule calendar + agenda
-- New Job Entry and New Event Entry
-- Tasks/notes
-- Client directory and client auto-sync from jobs
-- Invoice builder with services/supplies, send text/email/share, signature, check photo
-- Supplies section with list, item detail, inventory, receipt photos/categories
-- Fullscreen phone layout fix
-
-Upload all files to your GitHub repo root and replace the old ones.
+Fixes:
+- Supplies list starts blank with Add Supply quick item creation.
+- Removed Inventory tab.
+- Supply item page layout: image left, details right, trackers stay on top.
+- Add Inventory button/log updates quantity remaining and YTD spent.
+- Receipt detail page has Save/Back and stable navigation.
+- Side and top tabs larger; side tab text flipped inward.
+- Keeps schedule, clients, invoices, supplies, fullscreen layout.
