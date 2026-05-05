@@ -36,3 +36,89 @@ textarea{min-height:90px}label{display:block;margin:8px 0 3px;color:#715833;font
 .trackers{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}.tracker{background:#1b1b1b;color:white;border-radius:10px;padding:8px}.tracker b{display:block;color:#00d084;font-size:18px}
 .invoiceGrid{display:grid;grid-template-columns:1fr 360px;gap:12px}.lineItem,.receiptLine{display:grid;grid-template-columns:1fr 95px 34px;gap:6px;align-items:center;margin:5px 0;background:rgba(255,255,255,.45);border:1px solid #d2bb86;border-radius:8px;padding:6px}.receiptLine{grid-template-columns:1fr 95px}.invoiceCard.paid{background:#dcfce7}.invoiceCard.partial{background:#fef9c3}.invoiceCard.unpaid{background:#fee2e2}.signature{width:100%;height:130px;background:white;border:2px solid #777;border-radius:10px;touch-action:none}.photo{max-width:100%;max-height:160px;border:1px solid #777;border-radius:8px;margin-top:6px}.sigImg{max-width:100%;border:1px solid #ccc}
 @media(max-width:720px){.binder{grid-template-columns:1fr 55px}.sideTab{width:55px;font-size:12px}.layout,.dayBottom,.three,.two,.trackers,.invoiceGrid{grid-template-columns:1fr}.calDay{min-height:66px}.monthBtn{min-width:46px;font-size:12px;padding:7px}.lineItem{grid-template-columns:1fr}}
+
+.supplyHeader,.supplyRowList{display:grid;grid-template-columns:80px 1fr 120px;gap:8px;align-items:center;padding:8px;border-bottom:1px solid #d2bb86}
+.supplyRowList{cursor:pointer;background:rgba(255,255,255,.35);border-radius:8px;margin:4px 0;border:1px solid #d2bb86}
+@media(max-width:720px){.supplyHeader,.supplyRowList{grid-template-columns:55px 1fr 85px;font-size:12px}}
+
+
+/* ===== FULLSCREEN / PHONE FILL FIX V8 ===== */
+html,
+body{
+  width:100%;
+  min-height:100%;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100dvh;
+  background:#050505;
+  overflow-x:hidden;
+}
+
+.app{
+  width:100%;
+  max-width:none;
+  min-height:100dvh;
+  margin:0;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  flex:0 0 auto;
+}
+
+.binder{
+  flex:1 1 auto;
+  width:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 70px;
+}
+
+.page{
+  min-height:calc(100dvh - 80px);
+  width:100%;
+  overflow:auto;
+}
+
+.paper{
+  width:100%;
+  min-height:calc(100dvh - 150px);
+}
+
+.sideTabs{
+  height:100%;
+  min-height:calc(100dvh - 80px);
+}
+
+@media(max-width:720px){
+  .app{
+    padding:4px;
+  }
+
+  .binder{
+    grid-template-columns:minmax(0,1fr) 55px;
+  }
+
+  .page{
+    min-height:calc(100dvh - 72px);
+    padding:8px;
+  }
+
+  .paper{
+    min-height:calc(100dvh - 135px);
+    padding:10px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  header button{
+    padding:8px 10px;
+  }
+}
