@@ -1,8 +1,8 @@
-Bird Planner V14 Large Print
+Bird Planner V16 Folder Tabs
 
-Bigger font version based on user's reference image:
-- Larger body text
-- Larger tabs
-- Larger labels, buttons, inputs
-- Larger calendar day numbers and preview entries
-- Larger cards and tracker values
+Realistic folder tab visual update:
+- Layered curved side tabs
+- Active section tab pulls forward
+- Section colors retained
+- Top tabs also styled like folder tabs
+- Keeps previous functionality from V14 base

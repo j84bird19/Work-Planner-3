@@ -356,3 +356,237 @@ textarea{
     font-size:15px !important;
   }
 }
+
+
+/* ===== V16 REALISTIC LAYERED FILE FOLDER TABS ===== */
+
+/* Main binder rail */
+.binder{
+  grid-template-columns:minmax(0,1fr) 78px !important;
+  overflow:visible !important;
+}
+
+.page{
+  position:relative;
+  z-index:2;
+  border-right:0 !important;
+  border-radius:18px 0 0 18px !important;
+  box-shadow:4px 0 10px rgba(0,0,0,.35);
+}
+
+.sideTabs{
+  position:relative !important;
+  display:block !important;
+  height:calc(100dvh - 80px) !important;
+  min-height:620px !important;
+  padding:14px 0 14px 0 !important;
+  overflow:visible !important;
+  z-index:1;
+}
+
+/* Base realistic folder tab */
+.sideTab{
+  position:absolute !important;
+  right:0 !important;
+  width:78px !important;
+  height:150px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  text-orientation:mixed !important;
+
+  font-size:22px !important;
+  line-height:1 !important;
+  letter-spacing:1.5px !important;
+  font-weight:bold !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+
+  color:white !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.55);
+
+  border-radius:0 28px 28px 0 !important;
+  box-shadow:
+    5px 5px 10px rgba(0,0,0,.38),
+    inset -7px 0 10px rgba(255,255,255,.18),
+    inset 4px 0 7px rgba(0,0,0,.18);
+
+  clip-path:polygon(
+    0 0,
+    80% 0,
+    100% 14%,
+    100% 86%,
+    80% 100%,
+    0 100%
+  );
+
+  transition:all .18s ease;
+}
+
+/* Staggered folder stack positions */
+.sideTab:nth-child(1){
+  top:0px !important;
+  z-index:4;
+}
+
+.sideTab:nth-child(2){
+  top:130px !important;
+  z-index:3;
+}
+
+.sideTab:nth-child(3){
+  top:260px !important;
+  z-index:2;
+}
+
+.sideTab:nth-child(4){
+  top:390px !important;
+  z-index:1;
+}
+
+/* Section colors */
+.sideTab[data-section="schedule"]{
+  background:linear-gradient(90deg,#00aa68,#00d084 65%,#5effbd) !important;
+}
+
+.sideTab[data-section="clients"]{
+  background:linear-gradient(90deg,#0073c7,#0099ff 65%,#6fd0ff) !important;
+}
+
+.sideTab[data-section="supplies"]{
+  background:linear-gradient(90deg,#c97700,#f59e0b 65%,#ffd166) !important;
+}
+
+.sideTab[data-section="banking"]{
+  background:linear-gradient(90deg,#7e22ce,#a855f7 65%,#d8b4fe) !important;
+}
+
+/* Active tab comes forward like selected folder tab */
+.sideTab.active{
+  right:-8px !important;
+  width:88px !important;
+  z-index:20 !important;
+  box-shadow:
+    8px 8px 16px rgba(0,0,0,.45),
+    inset -8px 0 12px rgba(255,255,255,.22),
+    inset 4px 0 8px rgba(0,0,0,.12);
+}
+
+/* Folder color body tint per selected section */
+body:has(.sideTab[data-section="schedule"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#00d084 !important;
+}
+
+body:has(.sideTab[data-section="clients"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#0099ff !important;
+}
+
+body:has(.sideTab[data-section="supplies"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#f59e0b !important;
+}
+
+body:has(.sideTab[data-section="banking"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#a855f7 !important;
+}
+
+/* Top tabs get folder-tab look too */
+.subtabs{
+  align-items:flex-end !important;
+  gap:0 !important;
+  padding-left:6px !important;
+  overflow:visible !important;
+}
+
+.subtab{
+  position:relative !important;
+  flex:1 !important;
+  min-height:54px !important;
+  margin-right:-8px !important;
+  border:0 !important;
+  border-radius:18px 18px 0 0 !important;
+  clip-path:polygon(0 0,88% 0,100% 100%,0 100%) !important;
+  box-shadow:3px -3px 8px rgba(0,0,0,.28), inset 0 5px 9px rgba(255,255,255,.16) !important;
+  color:white !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+  background:#232323 !important;
+  z-index:1;
+}
+
+.subtab.active{
+  z-index:8 !important;
+  transform:translateY(2px);
+  color:#050505 !important;
+  text-shadow:none !important;
+}
+
+body:has(.sideTab[data-section="schedule"].active) .subtab.active{
+  background:linear-gradient(#60ffc2,#00d084) !important;
+}
+
+body:has(.sideTab[data-section="clients"].active) .subtab.active{
+  background:linear-gradient(#7ed7ff,#0099ff) !important;
+}
+
+body:has(.sideTab[data-section="supplies"].active) .subtab.active{
+  background:linear-gradient(#ffd166,#f59e0b) !important;
+}
+
+body:has(.sideTab[data-section="banking"].active) .subtab.active{
+  background:linear-gradient(#d8b4fe,#a855f7) !important;
+}
+
+/* Mobile adjustments */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 62px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 72px) !important;
+    min-height:560px !important;
+  }
+
+  .sideTab{
+    width:62px !important;
+    height:132px !important;
+    font-size:18px !important;
+    letter-spacing:.8px !important;
+  }
+
+  .sideTab.active{
+    right:-6px !important;
+    width:70px !important;
+  }
+
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:118px !important;}
+  .sideTab:nth-child(3){top:236px !important;}
+  .sideTab:nth-child(4){top:354px !important;}
+
+  .subtab{
+    font-size:17px !important;
+    min-height:48px !important;
+    padding:12px 6px !important;
+  }
+}
+
+@media(max-height:680px){
+  .sideTab{
+    height:118px !important;
+    font-size:16px !important;
+  }
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:106px !important;}
+  .sideTab:nth-child(3){top:212px !important;}
+  .sideTab:nth-child(4){top:318px !important;}
+}
