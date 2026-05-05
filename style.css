@@ -182,3 +182,17 @@ header{
   margin-top:12px;
   background:rgba(255,255,255,.75);
 }
+
+
+/* ===== V13 FONT & READABILITY UPGRADE ===== */
+body{font-size:18px;}
+label{font-size:14px !important;}
+.note{font-size:15px !important;}
+.weekdays div{font-size:14px !important;}
+.preview{font-size:13px !important;}
+input, select, textarea{font-size:16px !important;padding:12px !important;}
+button{font-size:16px !important;padding:12px 14px !important;}
+h1{font-size:30px !important;}
+h2{font-size:24px !important;}
+h3{font-size:20px !important;}
+@media(max-width:720px){body{font-size:17px;}}

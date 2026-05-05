@@ -1,4 +1,4 @@
-const KEY='bird_planner_supply_sync_v12';
+const KEY='bird_planner_v13_fonts';
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const FULL_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const SECTIONS={
