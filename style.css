@@ -1057,3 +1057,34 @@ body:has(.sideTab[data-section="banking"].active) .subtab.active{
   border-color:var(--folderColor) !important;
   box-shadow:inset 0 8px 0 var(--folderColor),0 0 0 1px rgba(0,0,0,.15) !important;
 }
+
+
+/* ===== V20 CLIENT + TAB CLEANUP ===== */
+
+/* Move section tabs down to align with inner page/paper top */
+.sideTabs{
+  padding-top:64px !important;
+  height:calc(100dvh - 80px) !important;
+}
+
+/* Tighten full-edge tabs to leave room for one more future tab */
+.sideTab{
+  min-height:0 !important;
+  font-size:24px !important;
+}
+
+/* If the tab system is grid-based, fit 5 possible slots while currently showing 4 */
+.sideTabs{
+  grid-template-rows:repeat(5, 1fr) !important;
+}
+
+/* Current four tabs use first four spaces, close together */
+.sideTab:nth-child(1){margin-top:0 !important;}
+.sideTab:nth-child(2){margin-top:-6px !important;}
+.sideTab:nth-child(3){margin-top:-6px !important;}
+.sideTab:nth-child(4){margin-top:-6px !important;}
+
+/* Keep directory title button from crowding */
+.titleRow .actions{
+  align-items:center;
+}

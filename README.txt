@@ -1,12 +1,8 @@
-Bird Planner V19 Final Fixes
+Bird Planner V20 Client Cleanup
 
-Fixes:
-1. Removed extra custom tab colors; all tabs now use one file-folder color.
-2. Invoice Archive shows only user-created/saved invoice data, no demo content.
-3. Client page no longer auto-creates blank invoices just by viewing. Start Invoice button creates one.
-4. Supplies Add Inventory fixed:
-   - Quantity Purchased × Cost Per Unit = YTD spent
-   - Quantity Remaining updates correctly
-   - Price Per Unit updates correctly
-5. Supply Save button recalculates and saves totals.
-6. Save/sync cleanup pass for invoices, clients, supplies, and receipt pages.
+Changes:
+1. Added + Add Client button on Client Directory.
+   - Opens New Job Entry form so client info can be entered and synced.
+2. Removed example/placeholder text from input fields.
+3. Shifted right section tabs down to align with inner page top.
+4. Tightened right section tab spacing and reserved room for future extra tab.
