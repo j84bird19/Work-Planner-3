@@ -1,6 +1,8 @@
-Bird Planner V22 Add Client Form
+Bird Planner V23 Supply Save Return
 
 Fix:
-- Client Directory + Add Client now opens a direct client entry form.
-- Save Client saves the data to the directory and client record.
-- After saving, app returns to Client Directory and shows the new client.
+- After creating/editing a supply item and pressing Save,
+  the app now:
+  1. Saves the item
+  2. Returns to Supplies List
+  3. Reflects the updated item immediately
