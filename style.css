@@ -1027,3 +1027,33 @@ body:has(.sideTab[data-section="banking"].active) .subtab.active{
     padding:5px 8px;
   }
 }
+
+
+/* ===== V19 FINAL FUNCTION-FIRST CLEANUP ===== */
+.colorBar{display:none !important;}
+:root{--folderColor:#d8b66a;--folderDark:#9c7a32;--folderLight:#fff4dc;--activeSectionColor:#d8b66a;--activeSectionLight:#fff4dc;--activeSectionMid:#d8b66a;--activeSectionDark:#9c7a32;}
+.sideTabs{background:#0d0d0d !important;}
+.sideTab,.sideTab[data-section="schedule"],.sideTab[data-section="clients"],.sideTab[data-section="supplies"],.sideTab[data-section="banking"]{
+  background:linear-gradient(90deg,var(--folderDark),var(--folderColor) 70%,#ffe3a0) !important;
+  color:#21170d !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+.sideTab.active{
+  background:linear-gradient(90deg,var(--folderDark),var(--folderColor) 70%,#ffe3a0) !important;
+  color:#21170d !important;
+}
+.subtab,.subtab:nth-child(1),.subtab:nth-child(2),.subtab:nth-child(3),.subtab:nth-child(4){
+  background:linear-gradient(180deg,#f7d98f,var(--folderColor)) !important;
+  color:#21170d !important;
+  text-shadow:none !important;
+}
+.subtab.active{
+  background:linear-gradient(180deg,#fff0bd,#d8b66a) !important;
+  color:#21170d !important;
+}
+.paper{
+  background:#fff4dc !important;
+  border-color:var(--folderColor) !important;
+  box-shadow:inset 0 8px 0 var(--folderColor),0 0 0 1px rgba(0,0,0,.15) !important;
+}
