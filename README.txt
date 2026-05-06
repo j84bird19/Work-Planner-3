@@ -1,8 +1,7 @@
-Bird Planner V20 Client Cleanup
+Bird Planner V21 Tabs Fit Screen
 
-Changes:
-1. Added + Add Client button on Client Directory.
-   - Opens New Job Entry form so client info can be entered and synced.
-2. Removed example/placeholder text from input fields.
-3. Shifted right section tabs down to align with inner page top.
-4. Tightened right section tab spacing and reserved room for future extra tab.
+Fix:
+- Right-side section tabs now fit fully on screen.
+- Banking tab no longer gets cut off.
+- Tabs stay aligned near the inner page top.
+- Rail leaves room for a future 5th tab.

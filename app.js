@@ -1,4 +1,4 @@
-const KEY='bird_planner_v20_client_cleanup';
+const KEY='bird_planner_v21_tabs_fit_screen';
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const FULL_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const SECTIONS={

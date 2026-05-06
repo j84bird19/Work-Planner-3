@@ -1088,3 +1088,112 @@ body:has(.sideTab[data-section="banking"].active) .subtab.active{
 .titleRow .actions{
   align-items:center;
 }
+
+
+/* ===== V21 RIGHT TABS FIT SCREEN FIX ===== */
+
+/* Keep right rail visible and contained */
+.binder{
+  grid-template-columns:minmax(0,1fr) 64px !important;
+  overflow:visible !important;
+}
+
+/* Align tabs with the top of the inner folder/page but keep all in view */
+.sideTabs{
+  box-sizing:border-box !important;
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows:repeat(5, minmax(0, 1fr)) !important;
+  gap:6px !important;
+
+  height:calc(100dvh - 124px) !important;
+  min-height:0 !important;
+  max-height:calc(100dvh - 124px) !important;
+
+  margin-top:54px !important;
+  padding:0 !important;
+  overflow:visible !important;
+  background:#0d0d0d !important;
+}
+
+/* Each tab fits inside one rail slot */
+.sideTab{
+  position:relative !important;
+  top:auto !important;
+  right:0 !important;
+
+  width:64px !important;
+  height:100% !important;
+  min-height:0 !important;
+  max-height:none !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  font-size:20px !important;
+  letter-spacing:.5px !important;
+  line-height:1 !important;
+
+  border-radius:0 18px 18px 0 !important;
+  clip-path:polygon(0 0,78% 0,100% 10%,100% 90%,78% 100%,0 100%) !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+
+/* Remove old stagger offsets that pushed banking off screen */
+.sideTab:nth-child(1),
+.sideTab:nth-child(2),
+.sideTab:nth-child(3),
+.sideTab:nth-child(4){
+  top:auto !important;
+  margin-top:0 !important;
+}
+
+/* Keep active tab slightly pulled forward */
+.sideTab.active{
+  width:72px !important;
+  right:-8px !important;
+}
+
+/* Mobile: fit all tabs even on shorter phones */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 56px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 118px) !important;
+    max-height:calc(100dvh - 118px) !important;
+    margin-top:52px !important;
+    gap:5px !important;
+  }
+
+  .sideTab{
+    width:56px !important;
+    font-size:17px !important;
+    letter-spacing:0 !important;
+    border-radius:0 15px 15px 0 !important;
+  }
+
+  .sideTab.active{
+    width:64px !important;
+    right:-7px !important;
+  }
+}
+
+/* Extra short screens */
+@media(max-height:700px){
+  .sideTabs{
+    height:calc(100dvh - 110px) !important;
+    max-height:calc(100dvh - 110px) !important;
+    margin-top:46px !important;
+    gap:4px !important;
+  }
+
+  .sideTab{
+    font-size:15px !important;
+  }
+}
