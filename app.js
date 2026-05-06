@@ -1,4 +1,4 @@
-const KEY='bird_planner_v21_tabs_fit_screen';
+const KEY='bird_planner_v22_add_client_form';
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const FULL_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const SECTIONS={
@@ -113,7 +113,42 @@ function saveEvent(){let date=document.getElementById('eventDate').value,title=d
 function autoFillClient(){let name=document.getElementById('jobClient').value.trim();let c=state.clients?.[name];if(!c)return;if(!document.getElementById('jobPhone').value)document.getElementById('jobPhone').value=c.phone||'';if(!document.getElementById('jobAddress').value)document.getElementById('jobAddress').value=c.address||''}
 function upsertClientFromJob(job){if(!state.clients)state.clients={};let n=job.client.trim();if(!n)return;if(!state.clients[n])state.clients[n]={name:n,phone:'',address:'',notes:''};if(job.phone)state.clients[n].phone=job.phone;if(job.address)state.clients[n].address=job.address;if(job.notes&&!state.clients[n].notes)state.clients[n].notes=job.notes}
 function syncClientsFromJobs(){if(!state.clients)state.clients={};Object.keys(state.calendarData||{}).forEach(date=>{(state.calendarData[date].agenda||[]).forEach(a=>{if(a.type==='job'&&a.client)upsertClientFromJob(a)})});save()}
-function openNewClientJob(){state.section='schedule';state.tabs.schedule='newJob';save();render()}
+
+function renderAddClientForm(){
+ content.innerHTML=`<div class="titleRow"><div><h2>Add Client</h2><p>Create a new client file.</p></div><button onclick="setTab('directory')">Back</button></div>
+ <div class="box">
+   <label>Client Name</label>
+   <input id="newClientName">
+   <label>Phone</label>
+   <input id="newClientPhone">
+   <label>Address</label>
+   <input id="newClientAddress">
+   <label>Notes</label>
+   <textarea id="newClientNotes"></textarea>
+   <div class="actions">
+     <button class="save" onclick="saveNewClient()">Save Client</button>
+     <button onclick="setTab('directory')">Cancel</button>
+   </div>
+ </div>`;
+}
+function saveNewClient(){
+ let name=document.getElementById('newClientName')?.value.trim();
+ if(!name)return;
+ if(!state.clients)state.clients={};
+ state.clients[name]={
+   name,
+   phone:document.getElementById('newClientPhone')?.value||'',
+   address:document.getElementById('newClientAddress')?.value||'',
+   notes:document.getElementById('newClientNotes')?.value||''
+ };
+ state.selectedClient=name;
+ state.section='clients';
+ state.tabs.clients='directory';
+ save();
+ render();
+}
+
+function openNewClientJob(){renderAddClientForm()}
 function openClient(n){state.selectedClient=n;state.tabs.clients='client';save();render()}function saveClientEdit(){let old=state.selectedClient;let name=document.getElementById('clientNameEdit').value.trim();if(!name)return;if(!state.clients)state.clients={};if(name!==old){delete state.clients[old];renameClientInJobs(old,name)}state.clients[name]={name,phone:document.getElementById('clientPhoneEdit').value,address:document.getElementById('clientAddressEdit').value,notes:document.getElementById('clientNotesEdit').value};state.selectedClient=name;save();render()}
 function renameClientInJobs(oldName,newName){Object.keys(state.calendarData||{}).forEach(date=>(state.calendarData[date].agenda||[]).forEach(a=>{if(a.client===oldName)a.client=newName}))}
 function jobsForClient(n){let out=[];Object.keys(state.calendarData||{}).forEach(date=>(state.calendarData[date].agenda||[]).forEach(a=>{if(a.type==='job'&&a.client===n)out.push({...a,date})}));return out.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))}
