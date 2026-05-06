@@ -1,4 +1,4 @@
-const KEY='bird_planner_v23_supply_save_return';
+const KEY='bird_planner_v24_supply_cost_model';
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const FULL_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const SECTIONS={
@@ -29,18 +29,17 @@ function renderClientRecord(){syncClientsFromJobs();let n=state.selectedClient||
 function renderClientInvoices(){ensureCollections();let invoices=state.invoices||[];return `<div class="titleRow"><div><h2>Invoices</h2><p>Create, sign, send, and store payment receipts.</p></div><button class="save" onclick="newInvoice()">+ New Invoice</button></div><div class="clientList">${invoices.map(inv=>`<div class="invoiceCard ${invoiceStatusClass(inv)}" onclick="openInvoice('${inv.id}')"><b>#${inv.number} — ${escapeHtml(inv.client||'No Client')}</b><small>${escapeHtml(inv.date||'')} • ${getInvoiceStatus(inv)}</small><br><small>Total ${money(inv.total)} • Paid ${money(inv.paid)} • Balance ${money(invoiceBalance(inv))}</small></div>`).join('')||'<p class="note">No invoices yet. Save a job with a client to auto-start one, or tap New Invoice.</p>'}</div>`}
 
 function renderSupplyList(){ensureCollections();let items=getSupplyArray();return `<div class="titleRow"><div><h2>Supplies List</h2><p>Start blank. Tap Add Supply for a quick item file, then fill in details.</p></div><button class="save" onclick="newSupplyItem()">+ Add Supply</button></div><div class="box"><div class="supplyHeader"><b>Item #</b><b>Item Name</b><b>Qty Remaining</b></div>${items.map(item=>`<div class="supplyRowList" onclick="openSupplyItem('${item.id}')"><span>${item.itemNumber}</span><span>${escapeHtml(item.name)}</span><span>${formatQty(item.quantityRemaining,item.unit)}</span></div>`).join('')||'<p class="note">No supplies yet. Tap + Add Supply to create the first item.</p>'}</div>`}
-function renderSupplyItem(){ensureCollections();let item=getSelectedSupply();if(!item)return `<div class="titleRow"><div><h2>Supply Item</h2><p>No supply selected yet.</p></div><button onclick="setTab('list')">Supply List</button></div><div class="box"><button class="save" onclick="newSupplyItem()">+ Add Supply</button></div>`;let t=supplyTotals(item.id);return `<div class="titleRow"><div><h2>${escapeHtml(item.name)}</h2><p>Supply item record + inventory tracker.</p></div><button onclick="setTab('list')">Supply List</button></div><div class="trackers"><div class="tracker">YTD Spent<b>${money(t.spent)}</b></div><div class="tracker">YTD Used<b>${formatQty(t.used,item.unit)}</b></div><div class="tracker">Remaining<b>${formatQty(item.quantityRemaining,item.unit)}</b></div><div class="tracker">Price/Unit<b>${money(item.pricePerUnit)}</b></div></div><div class="box"><div class="supplyDetailGrid"><div><label>Picture</label><input type="file" accept="image/*" capture="environment" onchange="attachSupplyPhoto(event,'${item.id}')">${item.photo?`<img class="photo supplyPhoto" src="${item.photo}">`:`<div class="photoPlaceholder">No Picture</div>`}</div><div><label>Item #</label><input id="sItemNumber" value="${escapeHtml(item.itemNumber||'')}" readonly><label>Item Name</label><input id="sName" value="${escapeHtml(item.name||'')}" oninput="updateSupplyField('${item.id}','name',this.value)"><label>Description</label><textarea id="sDesc" oninput="updateSupplyField('${item.id}','description',this.value)">${escapeHtml(item.description||'')}</textarea><label>Supplier / Store / Website</label><input id="sSupplier" value="${escapeHtml(item.supplier||'')}" oninput="updateSupplyField('${item.id}','supplier',this.value)"></div></div><h3>Product / Price Info</h3><label>Actual Store Item Number / SKU</label><div class="two"><input id="sStoreNumber" value="${escapeHtml(item.storeItemNumber||'')}" oninput="updateSupplyField('${item.id}','storeItemNumber',this.value)"><button onclick="scanBarcode('${item.id}')">Scan</button></div><div class="two"><div><label>Price Per Unit</label><input id="sPrice" type="number" step="0.01" value="${escapeHtml(item.price||'')}" oninput="updateSupplyField('${item.id}','price',this.value);calcSupplyUnitPrice('${item.id}')"></div><div><label>Units In Price</label><input id="sQtyForPrice" type="number" step="0.01" value="${escapeHtml(item.quantityForPrice||'')}" oninput="updateSupplyField('${item.id}','quantityForPrice',this.value);calcSupplyUnitPrice('${item.id}')"></div></div><div class="two"><div><label>Unit</label><input id="sUnit" value="${escapeHtml(item.unit||'unit')}" oninput="updateSupplyField('${item.id}','unit',this.value)"></div><div><label>Price Per Unit</label><input id="sPricePerUnit" type="number" step="0.0001" value="${escapeHtml(item.pricePerUnit||'')}" oninput="updateSupplyField('${item.id}','pricePerUnit',this.value)"></div></div><label>Quantity Remaining</label><input id="sRemaining" type="number" step="0.01" value="${escapeHtml(item.quantityRemaining||'')}" oninput="updateSupplyField('${item.id}','quantityRemaining',this.value)"><h3>Add Inventory</h3><div class="three"><div><label>Quantity Purchased</label><input id="invAddQty" type="number" step="0.01"></div><div><label>Cost Per Unit</label><input id="invAddCost" type="number" step="0.01"></div><div><label>Date</label><input id="invAddDate" value="${new Date().toLocaleDateString()}"></div></div><button class="save" onclick="addInventoryToSupply('${item.id}')">Add Inventory</button><div class="actions"><button class="save" onclick="saveSupplyItem('${item.id}')">Save</button><button class="delete" onclick="deleteSupplyItem('${item.id}')">Delete</button></div></div>`}
+function renderSupplyItem(){ensureCollections();let item=getSelectedSupply();if(!item)return `<div class="titleRow"><div><h2>Supply Item</h2><p>No supply selected yet.</p></div><button onclick="setTab('list')">Supply List</button></div><div class="box"><button class="save" onclick="newSupplyItem()">+ Add Supply</button></div>`;recalcSupplyRemaining(item.id);let t=supplyTotals(item.id);return `<div class="titleRow"><div><h2>${escapeHtml(item.name)}</h2><p>Supply item record + inventory tracker.</p></div><button onclick="setTab('list')">Supply List</button></div><div class="trackers"><div class="tracker">YTD Spent<b>${money(t.spent)}</b></div><div class="tracker">YTD Used<b>${formatQty(t.used,item.unit)}</b></div><div class="tracker">Remaining<b>${formatQty(item.quantityRemaining,item.unit)}</b></div><div class="tracker">Cost/Unit<b>${money(item.pricePerUnit)}</b></div></div><div class="box"><div class="supplyDetailGrid"><div><label>Picture</label><input type="file" accept="image/*" capture="environment" onchange="attachSupplyPhoto(event,'${item.id}')">${item.photo?`<img class="photo supplyPhoto" src="${item.photo}">`:`<div class="photoPlaceholder">No Picture</div>`}</div><div><label>Item #</label><input id="sItemNumber" value="${escapeHtml(item.itemNumber||'')}" readonly><label>Item Name</label><input id="sName" value="${escapeHtml(item.name||'')}" oninput="updateSupplyField('${item.id}','name',this.value)"><label>Description</label><textarea id="sDesc" oninput="updateSupplyField('${item.id}','description',this.value)">${escapeHtml(item.description||'')}</textarea><label>Supplier / Store / Website</label><input id="sSupplier" value="${escapeHtml(item.supplier||'')}" oninput="updateSupplyField('${item.id}','supplier',this.value)"></div></div><h3>Product / Cost Info</h3><label>Actual Store Item Number / SKU</label><div class="two"><input id="sStoreNumber" value="${escapeHtml(item.storeItemNumber||'')}" oninput="updateSupplyField('${item.id}','storeItemNumber',this.value)"><button onclick="scanBarcode('${item.id}')">Scan</button></div><div class="two"><div><label>Cost</label><input id="sPrice" type="number" step="0.01" value="${escapeHtml(item.price||'')}" oninput="updateSupplyField('${item.id}','price',this.value);calcSupplyUnitPrice('${item.id}')"></div><div><label>Amount Of Item For That Cost</label><input id="sQtyForPrice" type="number" step="0.01" value="${escapeHtml(item.quantityForPrice||'')}" oninput="updateSupplyField('${item.id}','quantityForPrice',this.value);calcSupplyUnitPrice('${item.id}')"></div></div><div class="two"><div><label>Unit</label><input id="sUnit" value="${escapeHtml(item.unit||'unit')}" oninput="updateSupplyField('${item.id}','unit',this.value)"></div><div><label>Cost Per Unit</label><input id="sPricePerUnit" type="number" step="0.0001" value="${escapeHtml(item.pricePerUnit||'')}" readonly></div></div><h3>Add Inventory</h3><p class="note">Add the amount being added to inventory. Remaining quantity auto-calculates from inventory added minus invoice usage.</p><div class="two"><div><label>Quantity / Amount Added</label><input id="invAddQty" type="number" step="0.01"></div><div><label>Date</label><input id="invAddDate" value="${new Date().toLocaleDateString()}"></div></div><button class="save" onclick="addInventoryToSupply('${item.id}')">Add Inventory</button><label>Quantity Remaining</label><input id="sRemaining" type="number" step="0.01" value="${escapeHtml(item.quantityRemaining||0)}" readonly><div class="actions"><button class="save" onclick="saveSupplyItem('${item.id}')">Save</button><button class="delete" onclick="deleteSupplyItem('${item.id}')">Delete</button></div></div>`}
 function renderSupplyInventory(){ensureSupplyDbFromNames();let items=getSupplyArray();return `<div class="titleRow"><div><h2>Inventory</h2><p>All supplies and remaining quantity.</p></div></div><div class="box"><div class="supplyHeader"><b>Item</b><b>Remaining</b><b>Value Left</b></div>${items.map(item=>`<div class="supplyRowList" onclick="openSupplyItem('${item.id}')"><span>${escapeHtml(item.name)}</span><span>${formatQty(item.quantityRemaining,item.unit)}</span><span>${money(Number(item.quantityRemaining||0)*Number(item.pricePerUnit||0))}</span></div>`).join('')||'<p class="note">No inventory yet.</p>'}</div>`}
 function renderSupplyReceipts(){let receipts=state.supplyReceipts||[];return `<div class="titleRow"><div><h2>Supply Receipts</h2><p>Take receipt pictures and categorize purchases.</p></div><button class="save" onclick="newSupplyReceipt()">+ Add Receipt</button></div><div class="clientList">${receipts.map(r=>`<div class="invoiceCard" onclick="openSupplyReceipt('${r.id}')"><b>${escapeHtml(r.title||'Receipt')}</b><small>${escapeHtml(r.date||'')} • ${escapeHtml(r.category||'Uncategorized')} • ${money(r.amount)}</small></div>`).join('')||'<p class="note">No receipts yet.</p>'}</div>`}
 function saveSupplyItem(id){
  let item=state.supplyItems[id];
  if(!item)return;
  calcSupplyUnitPrice(id);
+ recalcSupplyRemaining(id);
  save();
-
  state.section='supplies';
  state.tabs.supplies='list';
-
  render();
 }
 function newSupplyItem(){ensureCollections();let id=uid();let number=state.supplyCounter++;let item={id,itemNumber:number,name:'New Supply',description:'',storeItemNumber:'',price:'',quantityForPrice:'',unit:'unit',pricePerUnit:'',quantityRemaining:'',supplier:'',photo:''};state.supplyItems[id]=item;state.selectedSupplyId=id;addSupplyToDb(item.name);save();setTab('item')}
@@ -49,7 +48,18 @@ function getSelectedSupply(){return state.supplyItems?.[state.selectedSupplyId]|
 function getSupplyArray(){ensureCollections();return Object.values(state.supplyItems||{}).sort((a,b)=>Number(a.itemNumber||0)-Number(b.itemNumber||0))}
 function ensureSupplyDbFromNames(){ensureCollections();}
 function updateSupplyField(id,key,value){let item=state.supplyItems[id];if(!item)return;item[key]=value;if(key==='name')addSupplyToDb(value);save()}
-function calcSupplyUnitPrice(id){let item=state.supplyItems[id];if(!item)return;let price=Number(item.price||0);let qty=Number(item.quantityForPrice||0);if(price&&qty&&qty!==1){item.pricePerUnit=(price/qty).toFixed(4)}else if(price){item.pricePerUnit=price.toFixed(4)}let el=document.getElementById('sPricePerUnit');if(el)el.value=item.pricePerUnit||'';save()}
+function calcSupplyUnitPrice(id){
+ let item=state.supplyItems[id];
+ if(!item)return;
+ let cost=Number(item.price||0);
+ let amount=Number(item.quantityForPrice||0);
+ if(cost && amount){
+   item.pricePerUnit=(cost/amount).toFixed(4);
+ }
+ let el=document.getElementById('sPricePerUnit');
+ if(el)el.value=item.pricePerUnit||'';
+ save();
+}
 function attachSupplyPhoto(e,id){let file=e.target.files[0];if(!file)return;let reader=new FileReader();reader.onload=()=>{let item=state.supplyItems[id];if(item){item.photo=reader.result;save();render()}};reader.readAsDataURL(file)}
 function deleteSupplyItem(id){let item=state.supplyItems[id];if(!item)return;if(!confirm('Delete this supply item?'))return;delete state.supplyItems[id];if(state.selectedSupplyId===id)state.selectedSupplyId='';save();setTab('list')}
 function supplyTotals(id){
@@ -65,7 +75,6 @@ function supplyTotals(id){
      if(i.supplyId===id){
        purchased+=Number(i.qty||0);
        spent+=Number(i.amount||0);
-       used+=Number(i.used||0);
      }
    });
  });
@@ -101,13 +110,11 @@ function addClientInvoiceSupply(id){
  let amount=0;
  if(item){
    amount=Number(item.pricePerUnit||0)*qty;
-   item.quantityRemaining=Number(item.quantityRemaining||0)-qty;
-   if(!item.usageLog)item.usageLog=[];
-   item.usageLog.push({invoiceId:id,qty,amount,date:new Date().toLocaleDateString()});
  }
  addSupplyToDb(name);
  inv.supplies.push({name,amount,qty,supplyId:item?item.id:''});
  recalcInvoice(inv);
+ if(item)recalcSupplyRemaining(item.id);
  save();
  refreshClientInvoiceEmbed(id);
 }
