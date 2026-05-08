@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bird Planner</title>
+<title>Ahtelleeay</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#050505">
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0d0c0b">
+<link rel="stylesheet" href="style-v50_1.css?v=50.1">
 </head>
 <body>
 <div class="app">
 <header>
-  <div><h1>BIRD PLANNER</h1><p id="subtitle"></p></div>
-  <button onclick="backup()">Backup</button>
+  <div class="brandLockup"><div class="brandMark">A</div><div><h1>AHTELLEEAY</h1><p id="subtitle"></p><p class="buildBadge">BUILD V50.1 • Vertical Tab Lock Pass</p></div></div>
+  <div class="headerActions"><span id="pwaStatus" class="pwaStatus">Checking offline mode…</span><button onclick="backup()">Backup</button><button onclick="forceFreshApp()">Refresh App</button></div>
 </header>
 <div class="binder">
   <main class="page">
@@ -24,9 +24,11 @@
     <button class="sideTab" data-section="clients" onclick="setSection('clients')">Clients</button>
     <button class="sideTab" data-section="supplies" onclick="setSection('supplies')">Supplies</button>
     <button class="sideTab" data-section="banking" onclick="setSection('banking')">Banking</button>
+    <button class="sideTab" data-section="studio" onclick="setSection('studio')">Studio</button>
   </nav>
 </div>
 </div>
-<script src="app.js"></script>
+<script src="app-v50_1.js?v=50.1"></script>
+
 </body>
 </html>

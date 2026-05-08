@@ -1,19 +1,22 @@
-Bird Planner V27 CRUD + Flow Stability Patch
+Ahtelleeay V50 Stabilized Hyperreal Binder Engine
 
-Current locked model preserved:
-- Single-page planner/PWA with LocalStorage persistence.
-- Supplies cost model remains Cost ÷ Amount of Item for That Cost = Cost Per Unit.
-- Quantity Remaining still auto-calculates from inventory added minus invoice supply usage.
-- Invoice supply usage still charges cost per unit × quantity used and syncs remaining inventory.
+Updates:
+- Rebuilt the visual layer cleanly instead of stacking old CSS revisions.
+- Stabilized mobile binder/file-folder layout so all 5 vertical section tabs fit on screen.
+- Added luxury physical folder styling inspired by the reference image.
+- Active section now drives the full folder frame/background color.
+- Preserved existing app architecture and locked business logic.
+- Added state math normalization before save/flush to reduce tracker drift.
+- Fixed quick-add existing supply path cleanup.
+- Updated PWA cache/assets to V50.
 
-V27 audit fixes:
-- Hardened Supplies List CRUD flow.
-- Add Item reliably creates a draft item and opens the Item tab with a blank form.
-- Saving a supply marks it as real, recalculates cost/unit and remaining quantity, then returns to Supplies List.
-- Quick Add row supports item name + price and Enter-to-add.
-- Quick Add prevents duplicate item names by opening the existing item instead of making a duplicate.
-- Delete button remains on the far right of each list item and warns if the item is already used on an invoice.
-- Fixed invoice supply quantity math so the full invoice editor uses the entered quantity, not a hardcoded 1.
-- Removing invoice supply lines now recalculates supply remaining quantity.
-- Added state/tab guards so broken saved tab states cannot crash rendering.
-- Added safer supply numbering to avoid duplicate Item # values after deletes/drafts.
+Deployment rule:
+Upload ONLY these extracted files into the stabilization branch root. Replace matching files. Delete old versioned files if they remain.
+
+
+V50.1 Vertical Tab Lock Pass:
+- Only vertical section tab layout was changed.
+- All 5 side section tabs fill the binder height equally.
+- Tabs overlap slightly like physical file folders.
+- Section titles use gold lettering for readability.
+- App logic, math, save/sync, scratch pad, reminders, time card, and PWA behavior were not intentionally changed.
