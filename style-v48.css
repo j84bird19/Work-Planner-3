@@ -1,0 +1,2313 @@
+*{box-sizing:border-box}
+body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;padding:8px}
+button{border:0;border-radius:10px;background:#242424;color:white;font-weight:bold;padding:10px 12px}
+.app{max-width:1200px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+h1{margin:0;color:#8ffcff} header p{margin:3px 0;color:#aaa}
+.binder{display:grid;grid-template-columns:1fr 70px;margin-top:10px}
+.page{min-height:78vh;border:2px solid #555;border-radius:18px 0 0 18px;background:#101010;padding:12px}
+.sideTabs{display:flex;flex-direction:column;height:100%;padding:0;gap:0}
+.sideTab{writing-mode:vertical-rl;transform:rotate(180deg);flex:1;width:70px;border:2px solid #555;border-left:0;border-radius:0;background:#191919;font-size:14px;display:flex;align-items:center;justify-content:center}
+.sideTab.active{background:#00d084;color:#001b10;border-color:#00d084}
+.subtabs{display:flex;width:100%;gap:6px;margin-bottom:10px}
+.subtab{flex:1;padding:12px;font-size:14px;border-radius:10px 10px 0 0;background:#222;border:1px solid #444}
+.subtab.active{background:#0099ff}
+.paper{min-height:66vh;background:#fff4dc;color:#21170d;border:2px solid #d4bc91;border-radius:16px;padding:14px}
+.titleRow{display:flex;justify-content:space-between;border-bottom:2px solid #d4bc91;padding-bottom:8px;margin-bottom:12px;gap:8px}
+h2{margin:0;font-family:Georgia,serif}.layout{display:grid;grid-template-columns:1fr 300px;gap:12px}
+.box,.dailyBox{border:2px solid #b79a63;border-radius:14px;background:rgba(255,255,255,.45);padding:12px}
+.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.save{background:#00d084;color:#001b10}.delete{background:#ef4444}.blue{background:#0099ff}.note{color:#715833;font-size:13px}
+input,select,textarea{width:100%;border:1px solid #b79a63;border-radius:9px;padding:9px;background:#fff;color:#111;font:inherit}
+textarea{min-height:90px}label{display:block;margin:8px 0 3px;color:#715833;font-size:11px;text-transform:uppercase;font-weight:bold}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.monthTabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px}
+.monthBtn{min-width:54px;background:#111;border:1px solid #333;color:white;padding:8px}.monthBtn.active{background:#00d084;color:#001b10}
+.calendarTitle{display:flex;justify-content:space-between;align-items:center;gap:8px}.weekdays,.calendarGrid{display:grid;grid-template-columns:repeat(7,1fr)}
+.weekdays div{font-size:11px;font-weight:bold;text-align:center;color:#715833;padding:5px}
+.calDay{min-height:82px;border:1px solid #cdb682;background:rgba(255,255,255,.45);padding:4px;overflow:hidden;cursor:pointer}
+.calDay.blank{background:rgba(255,255,255,.15)}.calDay.today{outline:2px solid #0099ff;outline-offset:-2px}.calDay.selected{background:#dff8ed;outline:2px solid #00d084;outline-offset:-2px}
+.dayNum{font-weight:bold;font-size:12px}.preview{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;background:rgba(0,0,0,.08);border-radius:4px;padding:2px}.preview.canceled{text-decoration:line-through;opacity:.55}
+.dayBottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.agendaRow{display:grid;grid-template-columns:1fr 34px;gap:5px;align-items:center;margin:5px 0;background:rgba(255,255,255,.45);border:1px solid #d2bb86;border-radius:8px;padding:6px}
+.agendaRow.canceled span{text-decoration:line-through;opacity:.55}
+.taskRow{display:grid;grid-template-columns:26px 1fr 34px;gap:5px;align-items:center;margin:5px 0}.taskRow.done input[type=text]{text-decoration:line-through;color:#777}
+.smallBtn{padding:8px;background:#222;color:white}.addRow{display:grid;grid-template-columns:70px 1fr 70px;gap:5px;margin-top:8px}.addTaskRow{display:grid;grid-template-columns:1fr 70px;gap:5px;margin-top:8px}
+.clientList{display:grid;gap:7px}.clientCard,.historyCard,.invoiceCard{background:rgba(255,255,255,.55);border:1px solid #d2bb86;border-radius:10px;padding:9px;cursor:pointer;color:#21170d}.clientCard b,.historyCard b,.invoiceCard b{display:block}
+.trackers{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}.tracker{background:#1b1b1b;color:white;border-radius:10px;padding:8px}.tracker b{display:block;color:#00d084;font-size:18px}
+.invoiceGrid{display:grid;grid-template-columns:1fr 360px;gap:12px}.lineItem,.receiptLine{display:grid;grid-template-columns:1fr 95px 34px;gap:6px;align-items:center;margin:5px 0;background:rgba(255,255,255,.45);border:1px solid #d2bb86;border-radius:8px;padding:6px}.receiptLine{grid-template-columns:1fr 95px}.invoiceCard.paid{background:#dcfce7}.invoiceCard.partial{background:#fef9c3}.invoiceCard.unpaid{background:#fee2e2}.signature{width:100%;height:130px;background:white;border:2px solid #777;border-radius:10px;touch-action:none}.photo{max-width:100%;max-height:160px;border:1px solid #777;border-radius:8px;margin-top:6px}.sigImg{max-width:100%;border:1px solid #ccc}
+@media(max-width:720px){.binder{grid-template-columns:1fr 55px}.sideTab{width:55px;font-size:12px}.layout,.dayBottom,.three,.two,.trackers,.invoiceGrid{grid-template-columns:1fr}.calDay{min-height:66px}.monthBtn{min-width:46px;font-size:12px;padding:7px}.lineItem{grid-template-columns:1fr}}
+
+.supplyHeader,.supplyRowList{display:grid;grid-template-columns:80px 1fr 120px;gap:8px;align-items:center;padding:8px;border-bottom:1px solid #d2bb86}
+.supplyRowList{cursor:pointer;background:rgba(255,255,255,.35);border-radius:8px;margin:4px 0;border:1px solid #d2bb86}
+@media(max-width:720px){.supplyHeader,.supplyRowList{grid-template-columns:55px 1fr 85px;font-size:12px}}
+
+
+/* ===== FULLSCREEN / PHONE FILL FIX V8 ===== */
+html,
+body{
+  width:100%;
+  min-height:100%;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100dvh;
+  background:#050505;
+  overflow-x:hidden;
+}
+
+.app{
+  width:100%;
+  max-width:none;
+  min-height:100dvh;
+  margin:0;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  flex:0 0 auto;
+}
+
+.binder{
+  flex:1 1 auto;
+  width:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 70px;
+}
+
+.page{
+  min-height:calc(100dvh - 80px);
+  width:100%;
+  overflow:auto;
+}
+
+.paper{
+  width:100%;
+  min-height:calc(100dvh - 150px);
+}
+
+.sideTabs{
+  height:100%;
+  min-height:calc(100dvh - 80px);
+}
+
+@media(max-width:720px){
+  .app{
+    padding:4px;
+  }
+
+  .binder{
+    grid-template-columns:minmax(0,1fr) 55px;
+  }
+
+  .page{
+    min-height:calc(100dvh - 72px);
+    padding:8px;
+  }
+
+  .paper{
+    min-height:calc(100dvh - 135px);
+    padding:10px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  header button{
+    padding:8px 10px;
+  }
+}
+
+
+/* ===== V9 TAB + SUPPLY LAYOUT FIXES ===== */
+.sideTab{
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  font-size:18px !important;
+  letter-spacing:1px;
+  text-align:center;
+}
+.subtab{
+  font-size:17px !important;
+  padding:16px 10px !important;
+}
+.supplyDetailGrid{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:14px;
+  align-items:start;
+}
+.supplyPhoto,.photoPlaceholder{
+  width:100%;
+  max-width:240px;
+  min-height:180px;
+  object-fit:cover;
+  border:2px solid #b79a63;
+  border-radius:14px;
+  background:rgba(255,255,255,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#715833;
+}
+@media(max-width:720px){
+  .sideTab{
+    font-size:15px !important;
+  }
+  .subtab{
+    font-size:15px !important;
+    padding:14px 8px !important;
+  }
+  .supplyDetailGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===== V10 CLIENT EMBEDDED INVOICE ===== */
+.clientInvoiceEmbed{
+  margin:10px 0 16px;
+}
+.embeddedInvoice{
+  border-style:solid;
+}
+.miniTitle{
+  margin-bottom:8px;
+}
+.smallReceipt{
+  margin-top:12px;
+  background:rgba(255,255,255,.75);
+}
+
+
+/* ===== V13 FONT & READABILITY UPGRADE ===== */
+body{font-size:18px;}
+label{font-size:14px !important;}
+.note{font-size:15px !important;}
+.weekdays div{font-size:14px !important;}
+.preview{font-size:13px !important;}
+input, select, textarea{font-size:16px !important;padding:12px !important;}
+button{font-size:16px !important;padding:12px 14px !important;}
+h1{font-size:30px !important;}
+h2{font-size:24px !important;}
+h3{font-size:20px !important;}
+@media(max-width:720px){body{font-size:17px;}}
+
+
+/* ===== V14 LARGE PRINT / REFERENCE IMAGE SIZE ===== */
+body{
+  font-size:22px !important;
+  line-height:1.35 !important;
+}
+
+h1{
+  font-size:34px !important;
+  line-height:1.1 !important;
+}
+
+h2{
+  font-size:32px !important;
+  line-height:1.15 !important;
+}
+
+h3{
+  font-size:26px !important;
+}
+
+h4{
+  font-size:23px !important;
+}
+
+p,
+small,
+span,
+div{
+  font-size:inherit;
+}
+
+label{
+  font-size:17px !important;
+  letter-spacing:.05em;
+}
+
+.note{
+  font-size:18px !important;
+}
+
+button{
+  font-size:20px !important;
+  padding:14px 16px !important;
+}
+
+input,
+select,
+textarea{
+  font-size:21px !important;
+  padding:15px !important;
+  min-height:54px;
+}
+
+textarea{
+  min-height:130px;
+}
+
+.sideTab{
+  font-size:24px !important;
+  letter-spacing:1.5px !important;
+}
+
+.subtab{
+  font-size:23px !important;
+  padding:18px 12px !important;
+}
+
+.weekdays div{
+  font-size:17px !important;
+}
+
+.dayNum{
+  font-size:18px !important;
+}
+
+.preview{
+  font-size:16px !important;
+  padding:4px !important;
+}
+
+.clientCard,
+.historyCard,
+.invoiceCard,
+.supplyRowList,
+.supplyHeader,
+.agendaRow,
+.taskRow,
+.lineItem,
+.receiptLine{
+  font-size:22px !important;
+}
+
+.tracker{
+  font-size:20px !important;
+}
+
+.tracker b{
+  font-size:28px !important;
+}
+
+.calDay{
+  min-height:105px !important;
+}
+
+.paper{
+  padding:18px !important;
+}
+
+.box,
+.dailyBox{
+  padding:16px !important;
+}
+
+@media(max-width:720px){
+  body{
+    font-size:21px !important;
+  }
+
+  h1{
+    font-size:30px !important;
+  }
+
+  h2{
+    font-size:29px !important;
+  }
+
+  h3{
+    font-size:24px !important;
+  }
+
+  .sideTab{
+    font-size:21px !important;
+  }
+
+  .subtab{
+    font-size:20px !important;
+    padding:16px 8px !important;
+  }
+
+  input,
+  select,
+  textarea{
+    font-size:20px !important;
+    min-height:52px;
+  }
+
+  button{
+    font-size:19px !important;
+  }
+
+  .calDay{
+    min-height:92px !important;
+  }
+
+  .preview{
+    font-size:15px !important;
+  }
+}
+
+
+/* ===== V16 REALISTIC LAYERED FILE FOLDER TABS ===== */
+
+/* Main binder rail */
+.binder{
+  grid-template-columns:minmax(0,1fr) 78px !important;
+  overflow:visible !important;
+}
+
+.page{
+  position:relative;
+  z-index:2;
+  border-right:0 !important;
+  border-radius:18px 0 0 18px !important;
+  box-shadow:4px 0 10px rgba(0,0,0,.35);
+}
+
+.sideTabs{
+  position:relative !important;
+  display:block !important;
+  height:calc(100dvh - 80px) !important;
+  min-height:620px !important;
+  padding:14px 0 14px 0 !important;
+  overflow:visible !important;
+  z-index:1;
+}
+
+/* Base realistic folder tab */
+.sideTab{
+  position:absolute !important;
+  right:0 !important;
+  width:78px !important;
+  height:150px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  text-orientation:mixed !important;
+
+  font-size:22px !important;
+  line-height:1 !important;
+  letter-spacing:1.5px !important;
+  font-weight:bold !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+
+  color:white !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.55);
+
+  border-radius:0 28px 28px 0 !important;
+  box-shadow:
+    5px 5px 10px rgba(0,0,0,.38),
+    inset -7px 0 10px rgba(255,255,255,.18),
+    inset 4px 0 7px rgba(0,0,0,.18);
+
+  clip-path:polygon(
+    0 0,
+    80% 0,
+    100% 14%,
+    100% 86%,
+    80% 100%,
+    0 100%
+  );
+
+  transition:all .18s ease;
+}
+
+/* Staggered folder stack positions */
+.sideTab:nth-child(1){
+  top:0px !important;
+  z-index:4;
+}
+
+.sideTab:nth-child(2){
+  top:130px !important;
+  z-index:3;
+}
+
+.sideTab:nth-child(3){
+  top:260px !important;
+  z-index:2;
+}
+
+.sideTab:nth-child(4){
+  top:390px !important;
+  z-index:1;
+}
+
+/* Section colors */
+.sideTab[data-section="schedule"]{
+  background:linear-gradient(90deg,#00aa68,#00d084 65%,#5effbd) !important;
+}
+
+.sideTab[data-section="clients"]{
+  background:linear-gradient(90deg,#0073c7,#0099ff 65%,#6fd0ff) !important;
+}
+
+.sideTab[data-section="supplies"]{
+  background:linear-gradient(90deg,#c97700,#f59e0b 65%,#ffd166) !important;
+}
+
+.sideTab[data-section="banking"]{
+  background:linear-gradient(90deg,#7e22ce,#a855f7 65%,#d8b4fe) !important;
+}
+
+/* Active tab comes forward like selected folder tab */
+.sideTab.active{
+  right:-8px !important;
+  width:88px !important;
+  z-index:20 !important;
+  box-shadow:
+    8px 8px 16px rgba(0,0,0,.45),
+    inset -8px 0 12px rgba(255,255,255,.22),
+    inset 4px 0 8px rgba(0,0,0,.12);
+}
+
+/* Folder color body tint per selected section */
+body:has(.sideTab[data-section="schedule"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#00d084 !important;
+}
+
+body:has(.sideTab[data-section="clients"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#0099ff !important;
+}
+
+body:has(.sideTab[data-section="supplies"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#f59e0b !important;
+}
+
+body:has(.sideTab[data-section="banking"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#a855f7 !important;
+}
+
+/* Top tabs get folder-tab look too */
+.subtabs{
+  align-items:flex-end !important;
+  gap:0 !important;
+  padding-left:6px !important;
+  overflow:visible !important;
+}
+
+.subtab{
+  position:relative !important;
+  flex:1 !important;
+  min-height:54px !important;
+  margin-right:-8px !important;
+  border:0 !important;
+  border-radius:18px 18px 0 0 !important;
+  clip-path:polygon(0 0,88% 0,100% 100%,0 100%) !important;
+  box-shadow:3px -3px 8px rgba(0,0,0,.28), inset 0 5px 9px rgba(255,255,255,.16) !important;
+  color:white !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+  background:#232323 !important;
+  z-index:1;
+}
+
+.subtab.active{
+  z-index:8 !important;
+  transform:translateY(2px);
+  color:#050505 !important;
+  text-shadow:none !important;
+}
+
+body:has(.sideTab[data-section="schedule"].active) .subtab.active{
+  background:linear-gradient(#60ffc2,#00d084) !important;
+}
+
+body:has(.sideTab[data-section="clients"].active) .subtab.active{
+  background:linear-gradient(#7ed7ff,#0099ff) !important;
+}
+
+body:has(.sideTab[data-section="supplies"].active) .subtab.active{
+  background:linear-gradient(#ffd166,#f59e0b) !important;
+}
+
+body:has(.sideTab[data-section="banking"].active) .subtab.active{
+  background:linear-gradient(#d8b4fe,#a855f7) !important;
+}
+
+/* Mobile adjustments */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 62px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 72px) !important;
+    min-height:560px !important;
+  }
+
+  .sideTab{
+    width:62px !important;
+    height:132px !important;
+    font-size:18px !important;
+    letter-spacing:.8px !important;
+  }
+
+  .sideTab.active{
+    right:-6px !important;
+    width:70px !important;
+  }
+
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:118px !important;}
+  .sideTab:nth-child(3){top:236px !important;}
+  .sideTab:nth-child(4){top:354px !important;}
+
+  .subtab{
+    font-size:17px !important;
+    min-height:48px !important;
+    padding:12px 6px !important;
+  }
+}
+
+@media(max-height:680px){
+  .sideTab{
+    height:118px !important;
+    font-size:16px !important;
+  }
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:106px !important;}
+  .sideTab:nth-child(3){top:212px !important;}
+  .sideTab:nth-child(4){top:318px !important;}
+}
+
+
+/* ===== V17 SOFT REALISTIC FOLDER TABS ===== */
+/* Controlled overlap: enough folder feel, not too dramatic */
+
+.binder{
+  grid-template-columns:minmax(0,1fr) 68px !important;
+  overflow:visible !important;
+}
+
+.page{
+  position:relative !important;
+  z-index:3 !important;
+  border-right:0 !important;
+  border-radius:18px 0 0 18px !important;
+}
+
+.sideTabs{
+  position:relative !important;
+  display:block !important;
+  height:calc(100dvh - 80px) !important;
+  min-height:560px !important;
+  padding:0 !important;
+  overflow:visible !important;
+  z-index:2 !important;
+  background:transparent !important;
+}
+
+/* Soft curved folder tabs */
+.sideTab{
+  position:absolute !important;
+  right:0 !important;
+  width:68px !important;
+  height:168px !important;
+  margin:0 !important;
+  padding:0 !important;
+
+  border:none !important;
+  border-radius:0 26px 26px 0 !important;
+
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  text-orientation:mixed !important;
+
+  font-size:20px !important;
+  line-height:1 !important;
+  letter-spacing:1px !important;
+  font-weight:bold !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+
+  color:white !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.55);
+
+  /* soft folder tab cut */
+  clip-path:polygon(
+    0 0,
+    76% 0,
+    100% 12%,
+    100% 88%,
+    76% 100%,
+    0 100%
+  );
+
+  box-shadow:
+    4px 4px 9px rgba(0,0,0,.35),
+    inset -5px 0 8px rgba(255,255,255,.16),
+    inset 4px 0 6px rgba(0,0,0,.14);
+
+  transition:all .18s ease;
+}
+
+/* Controlled stagger. Tabs overlap by about 14px */
+.sideTab:nth-child(1){
+  top:0px !important;
+  z-index:7 !important;
+}
+.sideTab:nth-child(2){
+  top:154px !important;
+  z-index:6 !important;
+}
+.sideTab:nth-child(3){
+  top:308px !important;
+  z-index:5 !important;
+}
+.sideTab:nth-child(4){
+  top:462px !important;
+  z-index:4 !important;
+}
+
+/* Folder colors */
+.sideTab[data-section="schedule"]{
+  background:linear-gradient(90deg,#009b5f 0%,#00d084 72%,#65ffc5 100%) !important;
+}
+.sideTab[data-section="clients"]{
+  background:linear-gradient(90deg,#006fbf 0%,#0099ff 72%,#77d7ff 100%) !important;
+}
+.sideTab[data-section="supplies"]{
+  background:linear-gradient(90deg,#bf7200 0%,#f59e0b 72%,#ffd166 100%) !important;
+}
+.sideTab[data-section="banking"]{
+  background:linear-gradient(90deg,#7e22ce 0%,#a855f7 72%,#d8b4fe 100%) !important;
+}
+
+/* Inactive tabs look slightly behind */
+.sideTab:not(.active){
+  filter:saturate(.88) brightness(.86);
+  right:-2px !important;
+}
+
+/* Active tab comes forward and touches/overlaps page edge a little */
+.sideTab.active{
+  right:-7px !important;
+  width:76px !important;
+  z-index:20 !important;
+  filter:none !important;
+  box-shadow:
+    7px 6px 14px rgba(0,0,0,.42),
+    inset -6px 0 9px rgba(255,255,255,.22),
+    inset 3px 0 6px rgba(0,0,0,.12);
+}
+
+/* Active tab gets a small left connector so it feels inserted into folder/page */
+.sideTab.active::before{
+  content:"";
+  position:absolute;
+  left:-6px;
+  top:0;
+  width:12px;
+  height:100%;
+  background:inherit;
+  z-index:-1;
+}
+
+/* Top tabs: keep the file-tab feel but not overly skewed */
+.subtabs{
+  align-items:flex-end !important;
+  gap:4px !important;
+  padding-left:0 !important;
+  overflow:visible !important;
+}
+
+.subtab{
+  position:relative !important;
+  flex:1 !important;
+  min-height:52px !important;
+  margin-right:0 !important;
+  border:1px solid #333 !important;
+  border-bottom:0 !important;
+  border-radius:16px 16px 0 0 !important;
+  clip-path:none !important;
+  box-shadow:2px -2px 6px rgba(0,0,0,.25), inset 0 4px 8px rgba(255,255,255,.10) !important;
+  background:#1f1f1f !important;
+  color:white !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+  font-size:19px !important;
+  padding:13px 8px !important;
+}
+
+.subtab.active{
+  transform:translateY(2px);
+  color:#050505 !important;
+  text-shadow:none !important;
+  z-index:8 !important;
+}
+
+body:has(.sideTab[data-section="schedule"].active) .subtab.active{
+  background:#00d084 !important;
+}
+body:has(.sideTab[data-section="clients"].active) .subtab.active{
+  background:#0099ff !important;
+}
+body:has(.sideTab[data-section="supplies"].active) .subtab.active{
+  background:#f59e0b !important;
+}
+body:has(.sideTab[data-section="banking"].active) .subtab.active{
+  background:#a855f7 !important;
+}
+
+/* Mobile tuning */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 58px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 72px) !important;
+    min-height:520px !important;
+  }
+
+  .sideTab{
+    width:58px !important;
+    height:144px !important;
+    font-size:17px !important;
+    letter-spacing:.5px !important;
+  }
+
+  .sideTab.active{
+    width:66px !important;
+    right:-6px !important;
+  }
+
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:132px !important;}
+  .sideTab:nth-child(3){top:264px !important;}
+  .sideTab:nth-child(4){top:396px !important;}
+
+  .subtab{
+    font-size:17px !important;
+    min-height:48px !important;
+    padding:12px 6px !important;
+  }
+}
+
+/* Short screens: tighten vertical spacing */
+@media(max-height:680px){
+  .sideTab{
+    height:126px !important;
+    font-size:15px !important;
+  }
+  .sideTab:nth-child(1){top:0px !important;}
+  .sideTab:nth-child(2){top:116px !important;}
+  .sideTab:nth-child(3){top:232px !important;}
+  .sideTab:nth-child(4){top:348px !important;}
+}
+
+
+/* ===== V18 CUSTOM FOLDER COLORS + CONNECTED TABS ===== */
+
+/* Dynamic section colors */
+.sideTab[data-section="schedule"]{background:linear-gradient(90deg,var(--scheduleColor),color-mix(in srgb,var(--scheduleColor) 65%,#fff)) !important;}
+.sideTab[data-section="clients"]{background:linear-gradient(90deg,var(--clientsColor),color-mix(in srgb,var(--clientsColor) 65%,#fff)) !important;}
+.sideTab[data-section="supplies"]{background:linear-gradient(90deg,var(--suppliesColor),color-mix(in srgb,var(--suppliesColor) 65%,#fff)) !important;}
+.sideTab[data-section="banking"]{background:linear-gradient(90deg,var(--bankingColor),color-mix(in srgb,var(--bankingColor) 65%,#fff)) !important;}
+
+/* Binder edge full coverage */
+.binder{
+  grid-template-columns:minmax(0,1fr) 74px !important;
+  overflow:visible !important;
+}
+
+.sideTabs{
+  display:grid !important;
+  grid-template-rows:repeat(4,1fr) !important;
+  gap:0 !important;
+  height:calc(100dvh - 80px) !important;
+  min-height:calc(100dvh - 80px) !important;
+  padding:0 !important;
+  overflow:visible !important;
+  background:#0d0d0d !important;
+}
+
+/* Equal full-edge vertical folder tabs */
+.sideTab{
+  position:relative !important;
+  top:auto !important;
+  right:0 !important;
+  width:74px !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:none !important;
+  border-radius:0 22px 22px 0 !important;
+  clip-path:polygon(0 0,78% 0,100% 10%,100% 90%,78% 100%,0 100%) !important;
+  writing-mode:vertical-rl !important;
+  transform:none !important;
+  text-orientation:mixed !important;
+  font-size:26px !important;
+  letter-spacing:1px !important;
+  line-height:1 !important;
+  color:#fff !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.55) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-shadow:
+    5px 0 9px rgba(0,0,0,.35),
+    inset -5px 0 10px rgba(255,255,255,.18),
+    inset 4px 0 7px rgba(0,0,0,.14) !important;
+  filter:saturate(.78) brightness(.84);
+  z-index:3 !important;
+}
+
+/* Slight folder-stacked feel without losing full edge coverage */
+.sideTab:nth-child(1){z-index:8 !important;}
+.sideTab:nth-child(2){z-index:7 !important;margin-top:-8px !important;}
+.sideTab:nth-child(3){z-index:6 !important;margin-top:-8px !important;}
+.sideTab:nth-child(4){z-index:5 !important;margin-top:-8px !important;}
+
+/* Active section tab is front folder tab */
+.sideTab.active{
+  width:84px !important;
+  right:-10px !important;
+  filter:none !important;
+  z-index:20 !important;
+  box-shadow:
+    8px 0 14px rgba(0,0,0,.45),
+    inset -7px 0 12px rgba(255,255,255,.24),
+    inset 3px 0 7px rgba(0,0,0,.12) !important;
+}
+
+/* Active tab connector into page */
+.sideTab.active::before{
+  content:"";
+  position:absolute;
+  left:-8px;
+  top:0;
+  width:12px;
+  height:100%;
+  background:inherit;
+  z-index:-1;
+}
+
+/* Folder body changes with selected section */
+.paper{
+  background:linear-gradient(180deg,var(--activeSectionLight),#fff4dc 34%,#fff4dc) !important;
+  border-color:var(--activeSectionColor) !important;
+  box-shadow:inset 0 8px 0 var(--activeSectionColor), 0 0 0 1px rgba(0,0,0,.15) !important;
+}
+
+/* Main page should visually tuck under folder tabs */
+.page{
+  border-right:0 !important;
+  box-shadow:4px 0 10px rgba(0,0,0,.36) !important;
+}
+
+/* Horizontal tabs connected to page */
+.subtabs{
+  display:flex !important;
+  width:100% !important;
+  gap:0 !important;
+  margin-bottom:0 !important;
+  align-items:flex-end !important;
+  padding-left:0 !important;
+  overflow:visible !important;
+}
+
+.subtab{
+  flex:1 !important;
+  min-height:62px !important;
+  margin-right:-4px !important;
+  border:0 !important;
+  border-radius:20px 20px 0 0 !important;
+  clip-path:polygon(0 0,88% 0,100% 100%,0 100%) !important;
+  box-shadow:
+    3px -4px 8px rgba(0,0,0,.28),
+    inset 0 5px 9px rgba(255,255,255,.18) !important;
+  color:white !important;
+  text-shadow:0 1px 3px rgba(0,0,0,.48) !important;
+  font-size:23px !important;
+  padding:16px 10px !important;
+  line-height:1.05 !important;
+  z-index:2;
+}
+
+/* Auto gradient for inner tabs based on active section color */
+.subtab:nth-child(1){background:linear-gradient(180deg,var(--activeSectionLight),var(--activeSectionMid)) !important;}
+.subtab:nth-child(2){background:linear-gradient(180deg,var(--activeSectionMid),var(--activeSectionColor)) !important;}
+.subtab:nth-child(3){background:linear-gradient(180deg,var(--activeSectionColor),var(--activeSectionDark)) !important;}
+.subtab:nth-child(4){background:linear-gradient(180deg,var(--activeSectionDark),#111) !important;}
+
+.subtab.active{
+  transform:translateY(3px) !important;
+  color:#050505 !important;
+  text-shadow:none !important;
+  z-index:10 !important;
+  box-shadow:
+    3px -5px 10px rgba(0,0,0,.32),
+    inset 0 6px 10px rgba(255,255,255,.25) !important;
+}
+
+/* Paper connects directly to selected horizontal tab */
+.paper{
+  border-top-left-radius:0 !important;
+  border-top-right-radius:16px !important;
+}
+
+/* Color picker bar */
+.colorBar{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  background:#101010;
+  border-left:2px solid var(--activeSectionColor);
+  border-right:2px solid var(--activeSectionColor);
+  padding:6px 10px;
+  color:#ddd;
+  font-size:15px;
+}
+.colorBar input[type="color"]{
+  width:46px !important;
+  height:34px !important;
+  min-height:34px !important;
+  padding:2px !important;
+  border-radius:8px;
+  border:1px solid #555;
+}
+
+/* Mobile */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 60px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 72px) !important;
+    min-height:calc(100dvh - 72px) !important;
+  }
+
+  .sideTab{
+    width:60px !important;
+    font-size:21px !important;
+    letter-spacing:.5px !important;
+    border-radius:0 18px 18px 0 !important;
+  }
+
+  .sideTab.active{
+    width:68px !important;
+    right:-8px !important;
+  }
+
+  .subtab{
+    min-height:54px !important;
+    font-size:19px !important;
+    padding:14px 7px !important;
+  }
+
+  .colorBar{
+    font-size:13px;
+    padding:5px 8px;
+  }
+}
+
+
+/* ===== V19 FINAL FUNCTION-FIRST CLEANUP ===== */
+.colorBar{display:none !important;}
+:root{--folderColor:#d8b66a;--folderDark:#9c7a32;--folderLight:#fff4dc;--activeSectionColor:#d8b66a;--activeSectionLight:#fff4dc;--activeSectionMid:#d8b66a;--activeSectionDark:#9c7a32;}
+.sideTabs{background:#0d0d0d !important;}
+.sideTab,.sideTab[data-section="schedule"],.sideTab[data-section="clients"],.sideTab[data-section="supplies"],.sideTab[data-section="banking"]{
+  background:linear-gradient(90deg,var(--folderDark),var(--folderColor) 70%,#ffe3a0) !important;
+  color:#21170d !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+.sideTab.active{
+  background:linear-gradient(90deg,var(--folderDark),var(--folderColor) 70%,#ffe3a0) !important;
+  color:#21170d !important;
+}
+.subtab,.subtab:nth-child(1),.subtab:nth-child(2),.subtab:nth-child(3),.subtab:nth-child(4){
+  background:linear-gradient(180deg,#f7d98f,var(--folderColor)) !important;
+  color:#21170d !important;
+  text-shadow:none !important;
+}
+.subtab.active{
+  background:linear-gradient(180deg,#fff0bd,#d8b66a) !important;
+  color:#21170d !important;
+}
+.paper{
+  background:#fff4dc !important;
+  border-color:var(--folderColor) !important;
+  box-shadow:inset 0 8px 0 var(--folderColor),0 0 0 1px rgba(0,0,0,.15) !important;
+}
+
+
+/* ===== V20 CLIENT + TAB CLEANUP ===== */
+
+/* Move section tabs down to align with inner page/paper top */
+.sideTabs{
+  padding-top:64px !important;
+  height:calc(100dvh - 80px) !important;
+}
+
+/* Tighten full-edge tabs to leave room for one more future tab */
+.sideTab{
+  min-height:0 !important;
+  font-size:24px !important;
+}
+
+/* If the tab system is grid-based, fit 5 possible slots while currently showing 4 */
+.sideTabs{
+  grid-template-rows:repeat(5, 1fr) !important;
+}
+
+/* Current four tabs use first four spaces, close together */
+.sideTab:nth-child(1){margin-top:0 !important;}
+.sideTab:nth-child(2){margin-top:-6px !important;}
+.sideTab:nth-child(3){margin-top:-6px !important;}
+.sideTab:nth-child(4){margin-top:-6px !important;}
+
+/* Keep directory title button from crowding */
+.titleRow .actions{
+  align-items:center;
+}
+
+
+/* ===== V21 RIGHT TABS FIT SCREEN FIX ===== */
+
+/* Keep right rail visible and contained */
+.binder{
+  grid-template-columns:minmax(0,1fr) 64px !important;
+  overflow:visible !important;
+}
+
+/* Align tabs with the top of the inner folder/page but keep all in view */
+.sideTabs{
+  box-sizing:border-box !important;
+  position:relative !important;
+  display:grid !important;
+  grid-template-rows:repeat(5, minmax(0, 1fr)) !important;
+  gap:6px !important;
+
+  height:calc(100dvh - 124px) !important;
+  min-height:0 !important;
+  max-height:calc(100dvh - 124px) !important;
+
+  margin-top:54px !important;
+  padding:0 !important;
+  overflow:visible !important;
+  background:#0d0d0d !important;
+}
+
+/* Each tab fits inside one rail slot */
+.sideTab{
+  position:relative !important;
+  top:auto !important;
+  right:0 !important;
+
+  width:64px !important;
+  height:100% !important;
+  min-height:0 !important;
+  max-height:none !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  font-size:20px !important;
+  letter-spacing:.5px !important;
+  line-height:1 !important;
+
+  border-radius:0 18px 18px 0 !important;
+  clip-path:polygon(0 0,78% 0,100% 10%,100% 90%,78% 100%,0 100%) !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+
+/* Remove old stagger offsets that pushed banking off screen */
+.sideTab:nth-child(1),
+.sideTab:nth-child(2),
+.sideTab:nth-child(3),
+.sideTab:nth-child(4){
+  top:auto !important;
+  margin-top:0 !important;
+}
+
+/* Keep active tab slightly pulled forward */
+.sideTab.active{
+  width:72px !important;
+  right:-8px !important;
+}
+
+/* Mobile: fit all tabs even on shorter phones */
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 56px !important;
+  }
+
+  .sideTabs{
+    height:calc(100dvh - 118px) !important;
+    max-height:calc(100dvh - 118px) !important;
+    margin-top:52px !important;
+    gap:5px !important;
+  }
+
+  .sideTab{
+    width:56px !important;
+    font-size:17px !important;
+    letter-spacing:0 !important;
+    border-radius:0 15px 15px 0 !important;
+  }
+
+  .sideTab.active{
+    width:64px !important;
+    right:-7px !important;
+  }
+}
+
+/* Extra short screens */
+@media(max-height:700px){
+  .sideTabs{
+    height:calc(100dvh - 110px) !important;
+    max-height:calc(100dvh - 110px) !important;
+    margin-top:46px !important;
+    gap:4px !important;
+  }
+
+  .sideTab{
+    font-size:15px !important;
+  }
+}
+
+/* ===== V25 SUPPLY QUICK ADD ROW ===== */
+.quickAddSupply{
+  border-style:dashed !important;
+  background:rgba(255,255,255,.2) !important;
+  color:#715833 !important;
+  font-weight:bold;
+}
+.quickAddSupply span:first-child{
+  font-size:1.25em;
+}
+.quickAddSupply:hover,
+.quickAddSupply:focus{
+  background:rgba(255,255,255,.5) !important;
+}
+
+
+/* ===== V26 SUPPLY LIST ACTIONS + QUICK ADD FIX ===== */
+.supplyHeader,
+.supplyRowList{
+  grid-template-columns:80px minmax(0,1fr) 130px 94px !important;
+}
+.supplyRowList > span{
+  cursor:pointer;
+}
+.quickAddSupply{
+  background:rgba(255,255,255,.65) !important;
+  border:2px dashed #b79a63 !important;
+}
+.quickAddSupply input{
+  min-height:44px !important;
+  font-size:18px !important;
+  padding:8px !important;
+}
+.quickAddSupply .smallBtn,
+.supplyRowList .smallBtn{
+  align-self:stretch;
+  min-height:44px;
+  padding:8px 10px !important;
+  font-size:15px !important;
+}
+@media(max-width:720px){
+  .supplyHeader,
+  .supplyRowList{
+    grid-template-columns:46px minmax(0,1fr) 82px 68px !important;
+    gap:5px !important;
+    font-size:15px !important;
+  }
+  .quickAddSupply input{
+    font-size:15px !important;
+    padding:7px !important;
+  }
+  .quickAddSupply .smallBtn,
+  .supplyRowList .smallBtn{
+    font-size:12px !important;
+    padding:6px !important;
+  }
+}
+
+/* ===== V27 CRUD + FLOW STABILITY PATCH ===== */
+.supplyRowList{
+  align-items:center !important;
+}
+.supplyRowList .delete.smallBtn{
+  justify-self:stretch;
+  white-space:nowrap;
+}
+.quickAddSupply{
+  cursor:default !important;
+}
+.quickAddSupply input{
+  width:100% !important;
+}
+.quickPlus{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  border-radius:8px;
+  background:rgba(0,0,0,.06);
+}
+@media(max-width:720px){
+  .supplyRowList .delete.smallBtn{
+    font-size:11px !important;
+  }
+}
+
+/* ===== V29 INVOICE SUPPLY USED INPUT SYNC ===== */
+.invoiceSupplyAdd{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(110px,.8fr) auto;
+  gap:8px;
+  align-items:end;
+  margin:8px 0 10px;
+}
+.lineItem.supplyLine{
+  grid-template-columns:minmax(0,1fr) 110px 115px 34px !important;
+}
+.lineItem.supplyLine small{
+  display:block;
+  color:#715833;
+  font-size:.72em;
+  margin-top:2px;
+}
+@media(max-width:720px){
+  .invoiceSupplyAdd,
+  .lineItem.supplyLine{
+    grid-template-columns:1fr !important;
+  }
+  .lineItem.supplyLine button{
+    justify-self:end;
+  }
+}
+
+
+/* ===== V31 QUICK ADD FLOATING BOX ===== */
+.quickSupplyOverlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.quickSupplyOverlay.hidden{
+  display:none !important;
+}
+.quickSupplyBox{
+  width:min(92vw,420px);
+  max-height:90dvh;
+  overflow:auto;
+  background:#fff4dc;
+  color:#21170d;
+  border:3px solid #b79a63;
+  border-radius:18px;
+  box-shadow:0 18px 45px rgba(0,0,0,.45);
+  padding:16px;
+}
+.quickSupplyBox .titleRow{
+  align-items:flex-start;
+}
+.quickSupplyBox .titleRow button{
+  min-width:48px;
+}
+@media(max-width:720px){
+  .quickSupplyOverlay{
+    align-items:flex-start;
+    padding-top:70px;
+  }
+  .quickSupplyBox{
+    width:96vw;
+    padding:14px;
+  }
+}
+
+
+/* ===== V33 CLIENT / CONTACT PREDICTIVE PICKER ===== */
+.suggestBox{
+  display:none;
+  margin-top:5px;
+  border:1px solid #b79a63;
+  border-radius:12px;
+  background:#fffaf0;
+  overflow:hidden;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+.suggestBox.open{display:grid;}
+.suggestItem{
+  width:100%;
+  border-radius:0 !important;
+  background:#fffaf0 !important;
+  color:#21170d !important;
+  text-align:left !important;
+  border-bottom:1px solid #ead8b3 !important;
+  padding:10px 12px !important;
+}
+.suggestItem:last-child{border-bottom:0 !important;}
+.suggestItem b{display:block;}
+.suggestItem small{display:block;color:#715833;font-size:.78em;}
+
+
+/* ===== V34 SECTION TAB TOUCH TARGET WIDENING ===== */
+/* Tiny width increase so the right-side section tabs are easier to press on phones. */
+.binder{
+  grid-template-columns:minmax(0,1fr) 70px !important;
+}
+.sideTab{
+  width:70px !important;
+  min-width:70px !important;
+}
+.sideTab.active{
+  width:78px !important;
+}
+@media(max-width:720px){
+  .binder{
+    grid-template-columns:minmax(0,1fr) 62px !important;
+  }
+  .sideTab{
+    width:62px !important;
+    min-width:62px !important;
+  }
+  .sideTab.active{
+    width:70px !important;
+    right:-7px !important;
+  }
+}
+
+/* ===== V36 CALENDAR SCRATCH PAD + GALLERY ===== */
+.scratchModule{margin-top:14px; padding-top:0 !important; overflow:hidden;}
+.scratchMiniTabs{display:flex;gap:4px;align-items:flex-end;margin:0 0 10px;}
+.miniFolderTab{border-radius:14px 14px 0 0 !important;background:#1f1f1f !important;color:white !important;padding:10px 14px !important;}
+.miniFolderTab.active{background:#00d084 !important;color:#05140e !important;}
+.scratchTools{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;align-items:center;}
+.scratchTools button.activeTool{background:#0099ff !important;color:white !important;}
+.toolInline{display:flex;align-items:center;gap:6px;margin:0;color:#715833;text-transform:none;font-size:16px !important;}
+.toolInline input[type="color"]{width:54px !important;min-height:44px !important;padding:2px !important;}
+.toolInline input[type="range"]{width:130px !important;min-height:36px !important;padding:0 !important;}
+.uploadBtn{background:#242424;color:white;border-radius:10px;padding:12px 14px;margin:0;font-weight:bold;text-transform:none;font-size:20px !important;cursor:pointer;}
+.uploadBtn input{display:none;}
+.scratchCanvasBox{background:#f8f8f8;border:2px dashed #b79a63;border-radius:14px;padding:4px;overflow:auto;touch-action:none;}
+.scratchCanvas{display:block;background:white;border-radius:10px;max-width:100%;touch-action:none;}
+.scratchGallery{display:grid;gap:10px;}
+.galleryCard{display:grid;grid-template-columns:160px 1fr;gap:10px;background:rgba(255,255,255,.55);border:1px solid #d2bb86;border-radius:12px;padding:10px;align-items:start;}
+.galleryImg{width:160px;height:110px;object-fit:cover;border:1px solid #999;border-radius:8px;background:white;}
+.galleryCard small{display:block;color:#715833;margin-top:4px;}
+@media(max-width:720px){.galleryCard{grid-template-columns:1fr}.galleryImg{width:100%;height:auto;max-height:220px}.scratchTools button,.uploadBtn{font-size:16px !important;padding:10px !important}.toolInline{width:100%;}.toolInline input[type="range"]{width:100% !important;}}
+
+
+/* ===== V37 SCRATCH PAD VISIBILITY + MOBILE MOUNT FIX ===== */
+#calendarScratchModule,
+.scratchModule{
+  display:block !important;
+  width:100% !important;
+  margin:18px 0 0 !important;
+  border:3px solid #00d084 !important;
+  background:rgba(255,255,255,.62) !important;
+  clear:both !important;
+  overflow:visible !important;
+}
+.scratchModuleHeader{
+  border-bottom:2px solid #d4bc91;
+  margin-bottom:10px;
+  padding-bottom:8px;
+}
+.scratchModuleHeader h3{
+  margin:0 0 4px !important;
+}
+.scratchPadWrap{
+  display:block !important;
+  width:100% !important;
+}
+.scratchMiniTabs .miniFolderTab{
+  background:#222 !important;
+  color:white !important;
+  border-radius:14px 14px 0 0 !important;
+}
+.scratchMiniTabs .miniFolderTab.active{
+  background:#00d084 !important;
+  color:#001b10 !important;
+}
+.scratchCanvasBox{
+  min-height:260px !important;
+}
+.scratchCanvas{
+  width:100% !important;
+  min-height:260px !important;
+}
+@media(max-width:720px){
+  #calendarScratchModule,
+  .scratchModule{
+    margin-top:14px !important;
+    padding:10px !important;
+  }
+  .scratchCanvasBox{
+    min-height:300px !important;
+  }
+  .scratchCanvas{
+    min-height:300px !important;
+  }
+}
+
+
+/* ===== V38 SCRATCH PAD HARD-MOUNT VISIBILITY FIX ===== */
+#calendarScratchModule{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  z-index:50 !important;
+  margin:16px 0 !important;
+  min-height:260px !important;
+  grid-column:1 / -1 !important;
+  border:4px solid #0099ff !important;
+  background:#fffaf0 !important;
+  color:#21170d !important;
+  overflow:visible !important;
+}
+#calendarScratchModule .scratchModuleHeader{
+  background:#0099ff !important;
+  color:white !important;
+  margin:-16px -16px 12px -16px !important;
+  padding:12px 14px !important;
+  border-radius:10px 10px 0 0 !important;
+}
+#calendarScratchModule .scratchModuleHeader h3,
+#calendarScratchModule .scratchModuleHeader p{
+  color:white !important;
+  margin:0 !important;
+}
+.scratchCanvasBox{min-height:240px !important;}
+.scratchCanvas{width:100% !important; height:260px !important; min-height:260px !important;}
+@media(max-width:720px){
+  #calendarScratchModule{min-height:300px !important;margin:14px 0 !important;}
+  .scratchCanvas{height:300px !important;min-height:300px !important;}
+}
+
+
+/* ===== V39 BUILD VISIBILITY + CACHE RESET UI ===== */
+.buildBadge{
+  display:inline-block;
+  margin:4px 0 0 !important;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#ff3b30;
+  color:#fff !important;
+  font-size:12px !important;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+.headerActions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+@media(max-width:720px){.buildBadge{font-size:11px !important}.headerActions button{font-size:14px !important;padding:8px 9px !important}}
+
+
+/* ===== V40 STATIC SCRATCH PAD HARD MOUNT ===== */
+.buildBadge{display:inline-block;background:#111;color:#00d084;border:3px solid #00d084;border-radius:12px;padding:6px 10px;font-weight:bold}
+.headerActions{display:flex;gap:8px;flex-wrap:wrap}
+.staticScratchPad{
+  margin-top:14px !important;
+  border:6px solid #00d084 !important;
+  background:#fff !important;
+  color:#111 !important;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  z-index:999 !important;
+}
+.scratchModuleHeader h2{margin:0;color:#111 !important;}
+.scratchMiniTabs{display:flex;gap:6px;margin:10px 0;}
+.miniFolderTab{background:#222;color:#fff;border-radius:12px 12px 0 0;}
+.miniFolderTab.active{background:#00d084 !important;color:#001b10 !important;}
+.scratchTools{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;align-items:center;}
+.scratchTools button,.uploadBtn{background:#242424;color:white;border-radius:10px;padding:10px 12px;font-weight:bold;display:inline-flex;align-items:center;gap:6px;}
+.uploadBtn input{display:none;}
+.toolInline{display:inline-flex;align-items:center;gap:6px;margin:0;color:#715833;background:#fff4dc;border:1px solid #b79a63;border-radius:10px;padding:6px 8px;}
+.toolInline input[type=color]{width:52px;min-height:40px;padding:2px !important;}
+.toolInline input[type=range]{width:130px;min-height:40px;padding:0 !important;}
+.scratchCanvasBox{border:3px solid #111;border-radius:14px;background:white;min-height:320px;overflow:hidden;}
+.scratchCanvas{width:100%;height:320px;display:block;background:white;touch-action:none;}
+.scratchGallery{display:grid;gap:10px;}
+.galleryCard{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:start;border:1px solid #b79a63;border-radius:12px;padding:8px;background:#fff4dc;}
+.galleryImg{width:120px;height:90px;object-fit:cover;border:1px solid #777;border-radius:8px;background:white;}
+@media(max-width:720px){.scratchCanvas,.scratchCanvasBox{height:260px;min-height:260px}.galleryCard{grid-template-columns:1fr}.galleryImg{width:100%;height:auto}.staticScratchPad{margin-right:2px !important}}
+
+
+/* ===== V43 SCRATCH PAD CLEANUP: SINGLE BOTTOM PAD + COMPACT TOOLS ===== */
+#staticScratchPadMount{display:none!important;}
+#calendarScratchModule{
+  margin-top:14px!important;
+  border:3px solid #0099ff!important;
+  border-radius:14px!important;
+}
+#calendarScratchModule .scratchModuleHeader{
+  padding:8px 10px!important;
+}
+#calendarScratchModule .scratchModuleHeader h3{
+  font-size:22px!important;
+  margin:0!important;
+}
+#calendarScratchModule .scratchModuleHeader p{
+  font-size:14px!important;
+  margin:2px 0 0!important;
+}
+#calendarScratchModule .scratchMiniTabs{
+  margin:6px 0!important;
+}
+#calendarScratchModule .miniFolderTab{
+  font-size:14px!important;
+  padding:7px 10px!important;
+  min-height:34px!important;
+}
+#calendarScratchModule .scratchTools{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:4px!important;
+  margin:6px 0!important;
+}
+#calendarScratchModule .scratchTools button,
+#calendarScratchModule .uploadBtn{
+  font-size:13px!important;
+  padding:7px 8px!important;
+  min-height:34px!important;
+  border-radius:7px!important;
+}
+#calendarScratchModule .toolInline{
+  font-size:12px!important;
+  padding:4px 6px!important;
+  min-height:34px!important;
+}
+#calendarScratchModule .toolInline input[type=color]{
+  width:34px!important;
+  height:28px!important;
+  min-height:28px!important;
+  padding:1px!important;
+}
+#calendarScratchModule .toolInline input[type=range]{
+  width:82px!important;
+  min-height:28px!important;
+  padding:0!important;
+}
+#calendarScratchModule .scratchCanvasBox{
+  min-height:320px!important;
+}
+#calendarScratchModule .scratchCanvas{
+  height:320px!important;
+}
+#calendarScratchModule .actions button{
+  font-size:14px!important;
+  padding:8px 10px!important;
+  min-height:36px!important;
+}
+@media(max-width:720px){
+  #calendarScratchModule .scratchCanvasBox{min-height:360px!important;}
+  #calendarScratchModule .scratchCanvas{height:360px!important;}
+  #calendarScratchModule .scratchTools button,
+  #calendarScratchModule .uploadBtn{font-size:12px!important;padding:6px 7px!important;}
+  #calendarScratchModule .toolInline{font-size:12px!important;}
+}
+
+
+/* ===== V43 ELEGANT SCRATCH PAD CONTROLS ===== */
+#calendarScratchModule{
+  border:1px solid #b79a63 !important;
+  border-radius:18px !important;
+  background:rgba(255,250,240,.72) !important;
+  box-shadow:0 8px 18px rgba(58,39,16,.12) !important;
+  padding:12px !important;
+}
+#calendarScratchModule .scratchModuleHeader{
+  background:transparent !important;
+  color:#21170d !important;
+  border-bottom:1px solid #d4bc91 !important;
+  margin:0 0 8px !important;
+  padding:0 0 8px !important;
+}
+#calendarScratchModule .scratchModuleHeader h3,
+#calendarScratchModule .scratchModuleHeader p{
+  color:#21170d !important;
+  text-shadow:none !important;
+}
+#calendarScratchModule .scratchMiniTabs{
+  gap:5px !important;
+  margin:6px 0 8px !important;
+}
+#calendarScratchModule .miniFolderTab{
+  background:#2b241b !important;
+  color:#fffaf0 !important;
+  border-radius:12px 12px 0 0 !important;
+  font-size:13px !important;
+  padding:6px 10px !important;
+  min-height:30px !important;
+}
+#calendarScratchModule .miniFolderTab.active{
+  background:#d4bc91 !important;
+  color:#21170d !important;
+}
+.elegantScratch{position:relative;}
+.scratchToolbarCompact{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  align-items:center;
+  margin:6px 0;
+}
+#calendarScratchModule .toolBtn,
+#calendarScratchModule .uploadBtnCompact{
+  border:1px solid #7b633c !important;
+  background:#2b241b !important;
+  color:#fffaf0 !important;
+  border-radius:999px !important;
+  padding:6px 9px !important;
+  min-height:30px !important;
+  font-size:12px !important;
+  line-height:1 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:4px !important;
+  cursor:pointer;
+  box-shadow:0 2px 5px rgba(0,0,0,.16);
+}
+#calendarScratchModule .uploadBtnCompact input{display:none!important;}
+#calendarScratchModule .toolBtn.activeTool,
+#calendarScratchModule .scratchPopover button.activeTool{
+  background:#d4bc91 !important;
+  color:#21170d !important;
+}
+.scratchPopover{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  align-items:center;
+  margin:6px 0 8px;
+  padding:8px;
+  border:1px solid #d4bc91;
+  border-radius:14px;
+  background:rgba(255,255,255,.55);
+}
+#calendarScratchModule .scratchPopover button{
+  background:#fffaf0 !important;
+  color:#21170d !important;
+  border:1px solid #b79a63 !important;
+  border-radius:999px !important;
+  padding:6px 9px !important;
+  min-height:30px !important;
+  font-size:12px !important;
+}
+.stylePopover label{
+  display:flex !important;
+  align-items:center;
+  gap:6px;
+  margin:0 !important;
+  color:#715833 !important;
+  font-size:12px !important;
+  text-transform:none !important;
+}
+.stylePopover input[type=color]{width:38px!important;height:30px!important;min-height:30px!important;padding:1px!important;}
+.stylePopover input[type=range]{width:145px!important;min-height:28px!important;padding:0!important;}
+#calendarScratchModule .scratchCanvasBox{
+  border:1px solid #7b633c !important;
+  border-radius:16px !important;
+  background:#fff !important;
+  min-height:390px !important;
+  box-shadow:inset 0 1px 8px rgba(58,39,16,.08);
+}
+#calendarScratchModule .scratchCanvas{
+  height:390px !important;
+  min-height:390px !important;
+}
+.scratchActionsCompact{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+#calendarScratchModule .scratchActionsCompact button{
+  font-size:13px !important;
+  padding:7px 10px !important;
+  min-height:32px !important;
+  border-radius:10px !important;
+}
+@media(max-width:720px){
+  #calendarScratchModule{padding:10px!important;}
+  #calendarScratchModule .scratchModuleHeader h3{font-size:20px!important;}
+  #calendarScratchModule .scratchModuleHeader p{font-size:13px!important;}
+  #calendarScratchModule .toolBtn,
+  #calendarScratchModule .uploadBtnCompact,
+  #calendarScratchModule .scratchPopover button{font-size:11px!important;padding:6px 8px!important;min-height:29px!important;}
+  #calendarScratchModule .scratchCanvasBox{min-height:420px!important;}
+  #calendarScratchModule .scratchCanvas{height:420px!important;min-height:420px!important;}
+}
+
+
+/* ===== V43 COMPACT DAILY CARDS + PREMIUM SCRATCH PAD ENGINE ===== */
+.compactDayBottom{
+  grid-template-columns:1fr 1fr !important;
+  gap:10px !important;
+  margin-top:10px !important;
+}
+.compactDailyBox{
+  min-height:0 !important;
+  max-height:230px !important;
+  padding:12px !important;
+  overflow:hidden !important;
+  box-shadow:0 6px 18px rgba(58,39,16,.08);
+}
+.compactDailyBox h3{
+  font-size:20px !important;
+  margin:0 0 6px !important;
+  color:#245f3c !important;
+}
+.compactDailyBox h4{
+  font-size:18px !important;
+  margin:4px 0 !important;
+}
+.compactScrollArea{
+  max-height:82px !important;
+  overflow:auto !important;
+  padding-right:2px;
+}
+.compactDailyBox .agendaRow,
+.compactDailyBox .taskRow{
+  font-size:15px !important;
+  padding:4px 6px !important;
+  margin:3px 0 !important;
+}
+.compactDailyBox .smallBtn{
+  min-height:26px !important;
+  padding:4px 6px !important;
+  font-size:13px !important;
+}
+.compactAddRow{
+  margin-top:5px !important;
+}
+.compactAddRow input,
+.compactAddRow button{
+  min-height:34px !important;
+  padding:6px 8px !important;
+  font-size:14px !important;
+}
+.compactNotesArea{
+  min-height:48px !important;
+  height:48px !important;
+  margin-top:7px !important;
+  font-size:14px !important;
+  padding:8px !important;
+}
+#calendarScratchModule{
+  margin-top:12px !important;
+  border:1px solid #c6a765 !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,#fff9ea 0%,#fff4dc 100%) !important;
+  box-shadow:0 14px 32px rgba(58,39,16,.18), inset 0 1px 0 rgba(255,255,255,.9) !important;
+  padding:14px !important;
+}
+#calendarScratchModule .scratchModuleHeader{
+  display:flex !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+  align-items:flex-end !important;
+  border-bottom:1px solid rgba(183,154,99,.55) !important;
+  padding-bottom:8px !important;
+  margin-bottom:8px !important;
+  background:transparent !important;
+  color:#21170d !important;
+}
+#calendarScratchModule .scratchModuleHeader h3::before{content:'✎ ';color:#2f7d4b;}
+#calendarScratchModule .scratchModuleHeader h3{
+  color:#21170d !important;
+  font-family:Georgia,serif !important;
+  font-size:24px !important;
+  margin:0 !important;
+}
+#calendarScratchModule .scratchModuleHeader p{font-size:13px!important;margin:0!important;color:#715833!important;}
+#calendarScratchModule .scratchMiniTabs{justify-content:flex-end!important;margin:-2px 0 8px!important;}
+#calendarScratchModule .miniFolderTab{
+  border-radius:999px !important;
+  padding:5px 10px !important;
+  min-height:28px !important;
+  font-size:12px !important;
+  border:1px solid #b79a63 !important;
+  box-shadow:none !important;
+}
+.scratchToolbarCompact{gap:5px!important;margin:6px 0 7px!important;}
+#calendarScratchModule .toolBtn,
+#calendarScratchModule .uploadBtnCompact{
+  min-height:28px !important;
+  padding:5px 8px !important;
+  font-size:11px !important;
+  border-radius:11px !important;
+  border-color:#c9b17a!important;
+  background:#fffaf0!important;
+  color:#2b241b!important;
+  box-shadow:0 3px 8px rgba(58,39,16,.08)!important;
+}
+#calendarScratchModule .toolBtn.activeTool,
+#calendarScratchModule .scratchPopover button.activeTool{
+  background:#d9eadc!important;
+  color:#245f3c!important;
+  border-color:#2f7d4b!important;
+}
+.scratchPopover{
+  gap:4px!important;
+  padding:6px!important;
+  margin:4px 0 7px!important;
+  background:#fffaf0!important;
+  box-shadow:0 8px 18px rgba(58,39,16,.11)!important;
+}
+#calendarScratchModule .scratchPopover button,
+.stylePopover label{
+  font-size:11px!important;
+}
+#calendarScratchModule .scratchCanvasBox{
+  min-height:500px!important;
+  border:1px solid #9f814d!important;
+  border-radius:18px!important;
+  background:#fffdf7!important;
+  box-shadow:inset 0 2px 9px rgba(58,39,16,.10)!important;
+}
+#calendarScratchModule .scratchCanvas{
+  height:500px!important;
+  min-height:500px!important;
+  background:#fffdf7!important;
+}
+.scratchActionsCompact{justify-content:flex-end!important;margin-top:7px!important;}
+#calendarScratchModule .scratchActionsCompact button{
+  min-height:30px!important;
+  padding:6px 10px!important;
+  font-size:12px!important;
+}
+@media(max-width:720px){
+  .compactDayBottom{grid-template-columns:1fr!important;gap:8px!important;}
+  .compactDailyBox{max-height:185px!important;padding:10px!important;}
+  .compactDailyBox h3{font-size:17px!important;}
+  .compactDailyBox h4{font-size:16px!important;}
+  .compactScrollArea{max-height:58px!important;}
+  .compactNotesArea{height:42px!important;min-height:42px!important;}
+  #calendarScratchModule{padding:10px!important;margin-top:10px!important;}
+  #calendarScratchModule .scratchModuleHeader h3{font-size:19px!important;}
+  #calendarScratchModule .scratchModuleHeader p{display:none!important;}
+  #calendarScratchModule .scratchMiniTabs{justify-content:flex-start!important;}
+  #calendarScratchModule .toolBtn,
+  #calendarScratchModule .uploadBtnCompact{font-size:10px!important;padding:5px 7px!important;min-height:26px!important;}
+  #calendarScratchModule .scratchCanvasBox{min-height:520px!important;}
+  #calendarScratchModule .scratchCanvas{height:520px!important;min-height:520px!important;}
+}
+
+
+/* ===== V44 SKETCH ENGINE + PREMIUM CONTROL POLISH ===== */
+#calendarScratchModule{
+  border:1px solid #c6a765 !important;
+  background:linear-gradient(180deg,#fffaf0 0%,#fff4dc 100%) !important;
+}
+#calendarScratchModule .scratchCanvasBox{
+  height:560px !important;
+  min-height:560px !important;
+  border:1px solid #b79a63 !important;
+  border-radius:18px !important;
+  background:#fffdf7 !important;
+  overflow:hidden !important;
+  touch-action:none !important;
+}
+#calendarScratchModule .scratchCanvas{
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  display:block !important;
+  background:#fffdf7 !important;
+  touch-action:none !important;
+  cursor:crosshair;
+}
+#calendarScratchModule .scratchToolbarCompact{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:6px !important;
+  align-items:center !important;
+}
+#calendarScratchModule .scratchPopover{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  align-items:center !important;
+  gap:8px !important;
+  border:1px solid rgba(183,154,99,.55) !important;
+  border-radius:14px !important;
+  background:rgba(255,250,240,.96) !important;
+}
+#calendarScratchModule .upgradedStyle label{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  margin:0 !important;
+  color:#715833 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+.colorWheelWrap{display:flex;align-items:center;gap:8px;}
+.colorWheelInput{
+  width:44px !important;
+  min-width:44px !important;
+  height:44px !important;
+  min-height:44px !important;
+  border-radius:50% !important;
+  padding:2px !important;
+  overflow:hidden !important;
+  border:2px solid #b79a63 !important;
+  background:#fff !important;
+}
+.colorSwatch{
+  width:24px;height:24px;border-radius:50%;border:1px solid #8b7342;display:inline-block;
+}
+.imagePopover .uploadBtnCompact{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 !important;
+}
+@media(max-width:720px){
+  #calendarScratchModule .scratchCanvasBox{height:600px !important;min-height:600px !important;}
+  #calendarScratchModule .scratchToolbarCompact{gap:4px !important;}
+  #calendarScratchModule .scratchPopover{gap:5px !important;padding:6px !important;}
+}
+
+/* ===== V45 STUDIO TAB + TIME CARD + REMINDERS ===== */
+.sideTab[data-section="studio"]{
+  background:linear-gradient(90deg,#9a3412 0%,#d97706 72%,#fed7aa 100%) !important;
+}
+body:has(.sideTab[data-section="studio"].active) .paper{
+  background:#fff4dc !important;
+  border-color:#d97706 !important;
+}
+body:has(.sideTab[data-section="studio"].active) .subtab.active{
+  background:#d97706 !important;
+}
+.sideTabs .sideTab:nth-child(1){top:0px !important;z-index:9 !important;}
+.sideTabs .sideTab:nth-child(2){top:118px !important;z-index:8 !important;}
+.sideTabs .sideTab:nth-child(3){top:236px !important;z-index:7 !important;}
+.sideTabs .sideTab:nth-child(4){top:354px !important;z-index:6 !important;}
+.sideTabs .sideTab:nth-child(5){top:472px !important;z-index:5 !important;}
+.sideTabs{min-height:650px !important;}
+.timeCardModule,.reminderModule{margin-top:14px;background:rgba(255,255,255,.58);}
+.timeCardModule .titleRow,.reminderModule .titleRow{align-items:center;}
+.timeStatus{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:8px 12px;background:#22170d;color:#ffd166;font-size:14px !important;letter-spacing:.08em;}
+.timeButtonGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;}
+.timeMetaRow{margin:8px 0;}
+.timeLogList,.reminderList{display:grid;gap:6px;max-height:190px;overflow:auto;padding-right:2px;}
+.timeLogRow,.reminderRow{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;background:rgba(255,255,255,.62);border:1px solid #d2bb86;border-radius:10px;padding:8px;}
+.timeLogRow small{color:#715833;font-size:14px !important;}
+.timeDateGroup{border:1px solid #d2bb86;border-radius:12px;padding:8px;margin:8px 0;background:rgba(255,255,255,.52);}
+.invoiceTimeLogs{margin-top:12px;}
+.reminderAddGrid{display:grid;grid-template-columns:1fr 160px 130px auto;gap:8px;align-items:end;margin:8px 0;}
+.studio .scratchModule,.scratchModule{border-color:#d2bb86 !important;}
+@media(max-width:720px){
+  .sideTabs .sideTab:nth-child(1){top:0px !important;}
+  .sideTabs .sideTab:nth-child(2){top:104px !important;}
+  .sideTabs .sideTab:nth-child(3){top:208px !important;}
+  .sideTabs .sideTab:nth-child(4){top:312px !important;}
+  .sideTabs .sideTab:nth-child(5){top:416px !important;}
+  .sideTabs{min-height:560px !important;}
+  .timeButtonGrid{grid-template-columns:1fr 1fr;}
+  .reminderAddGrid{grid-template-columns:1fr;}
+  .timeLogRow,.reminderRow{grid-template-columns:1fr;}
+}
+
+
+/* ===== V46 OFFLINE + SCRATCH ENGINE HARDENING ===== */
+.buildBadge{display:inline-block;margin-top:4px;padding:4px 8px;border:1px solid rgba(212,188,145,.65);border-radius:999px;color:#d8b66a;background:rgba(255,244,220,.08);font-size:12px!important;letter-spacing:.08em}
+.pwaStatus{font-size:12px!important;color:#00d084;border:1px solid rgba(0,208,132,.45);border-radius:999px;padding:5px 9px;background:rgba(0,208,132,.08);white-space:nowrap}
+.pwaStatus.offline{color:#f59e0b;border-color:rgba(245,158,11,.5);background:rgba(245,158,11,.1)}
+.headerActions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.scratchModule{border:1px solid rgba(183,154,99,.85)!important;box-shadow:0 14px 38px rgba(54,35,8,.12), inset 0 1px 0 rgba(255,255,255,.55)!important;background:linear-gradient(180deg,#fff8e8 0%,#fff2d2 100%)!important}
+.scratchToolbarCompact{gap:6px!important;align-items:center!important;flex-wrap:wrap!important}
+.scratchToolbarCompact .toolBtn,.scratchActionsCompact button,.scratchPopover button,.uploadBtnCompact{font-size:13px!important;padding:8px 10px!important;border-radius:9px!important}
+.scratchCanvasBox{min-height:520px!important;height:58vh!important;max-height:820px!important;background:#fffdf7!important;border:1px solid rgba(83,57,18,.36)!important;border-radius:14px!important;overflow:hidden!important;touch-action:none!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}
+.scratchCanvas{display:block!important;width:100%!important;height:100%!important;touch-action:none!important;cursor:crosshair!important}
+.colorWheelInput{width:56px!important;height:42px!important;min-height:42px!important;padding:2px!important;border-radius:10px!important}
+.imagePopover input[type=file]{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+@media(max-width:720px){.scratchCanvasBox{height:54vh!important;min-height:430px!important}.scratchToolbarCompact .toolBtn,.scratchActionsCompact button,.scratchPopover button,.uploadBtnCompact{font-size:12px!important;padding:7px 8px!important}.pwaStatus{font-size:11px!important}}
+
+/* ===== V47 AHTELLEEAY BRAND IDENTITY PASS ===== */
+:root{
+  --atl-ivory:#f7f4ec;
+  --atl-parchment:#fff4dc;
+  --atl-cream:#fff8e8;
+  --atl-warm:#ebddc6;
+  --atl-gold:#d4a537;
+  --atl-gold-2:#b98219;
+  --atl-cocoa:#2b1e17;
+  --atl-charcoal:#0e0e0d;
+  --atl-ink:#21170d;
+  --atl-green:#167246;
+  --atl-green-soft:#dff1e3;
+  --atl-line:#d7bd82;
+  --atl-shadow:0 18px 45px rgba(0,0,0,.28);
+  --atl-soft-shadow:0 10px 25px rgba(54,35,8,.14);
+}
+html,body{background:
+  radial-gradient(circle at 20% 0%,rgba(212,165,55,.16),transparent 32%),
+  linear-gradient(145deg,#050505 0%,#14110e 55%,#050505 100%) !important;
+  color:var(--atl-ivory)!important;
+  font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif!important;
+}
+.app{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));}
+header{
+  padding:14px 16px 12px!important;
+  border-bottom:1px solid rgba(212,165,55,.24);
+  background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(42,30,23,.2));
+  border-radius:0 0 18px 18px;
+  box-shadow:0 12px 28px rgba(0,0,0,.2);
+}
+.brandLockup{display:flex;align-items:center;gap:12px;min-width:0;}
+.brandMark{
+  width:46px;height:46px;flex:0 0 46px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Georgia,serif;font-size:32px;font-weight:bold;line-height:1;
+  color:#17110d;
+  background:linear-gradient(145deg,#fff4c8 0%,#d4a537 55%,#8f5f12 100%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.8),0 12px 25px rgba(0,0,0,.42);
+  position:relative;
+}
+.brandMark:after{content:"✦";position:absolute;right:-6px;top:-8px;font-size:18px;color:#f6d982;text-shadow:0 2px 7px rgba(0,0,0,.5)}
+h1{
+  color:#f9ead0!important;
+  font-family:Georgia, "Times New Roman", serif!important;
+  letter-spacing:.12em!important;
+  font-weight:700!important;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+}
+header p#subtitle{color:#d8c9ac!important;letter-spacing:.02em;}
+.buildBadge{
+  color:#d4a537!important;
+  border-color:rgba(212,165,55,.45)!important;
+  background:rgba(212,165,55,.08)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.headerActions button, header button{
+  background:linear-gradient(145deg,#2b2722,#111)!important;
+  color:#f7edd7!important;
+  border:1px solid rgba(212,165,55,.4)!important;
+  box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+.pwaStatus{color:#d4a537!important;border-color:rgba(212,165,55,.36)!important;background:rgba(212,165,55,.08)!important;}
+.pwaStatus.offline{color:#f0b55d!important;background:rgba(245,158,11,.12)!important;}
+.binder{filter:drop-shadow(0 20px 35px rgba(0,0,0,.35));}
+.page{
+  background:linear-gradient(180deg,#15120f,#0b0a09)!important;
+  border-color:rgba(212,165,55,.42)!important;
+  box-shadow:var(--atl-shadow)!important;
+}
+.paper{
+  color:var(--atl-ink)!important;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(255,255,255,.76),transparent 28%),
+    linear-gradient(180deg,#fff8e8 0%,#fff1d3 100%)!important;
+  border:1px solid rgba(212,165,55,.72)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 10px 25px rgba(54,35,8,.15)!important;
+}
+.titleRow{border-bottom:1px solid rgba(183,154,99,.55)!important;}
+h2,h3,h4{font-family:Georgia,"Times New Roman",serif!important;color:#26190f!important;}
+button,.smallBtn{
+  background:linear-gradient(145deg,#2b2722 0%,#111 100%)!important;
+  color:#fff4dc!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:0 5px 12px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.08)!important;
+  transition:transform .14s ease, box-shadow .14s ease, filter .14s ease;
+}
+button:active{transform:translateY(1px) scale(.99);filter:brightness(.96);}
+button.save,.save{
+  background:linear-gradient(145deg,#1f8a55,#0e6a3e)!important;
+  color:#fffbea!important;
+  border-color:rgba(255,255,255,.15)!important;
+}
+button.delete,.delete{background:linear-gradient(145deg,#8e2929,#521616)!important;color:#fff3eb!important;}
+input,select,textarea{
+  background:#fffdf7!important;
+  color:#1e1510!important;
+  border:1px solid rgba(183,154,99,.72)!important;
+  box-shadow:inset 0 1px 3px rgba(54,35,8,.08)!important;
+}
+input:focus,textarea:focus,select:focus{
+  outline:2px solid rgba(212,165,55,.35)!important;
+  border-color:var(--atl-gold)!important;
+}
+label{color:#826332!important;letter-spacing:.08em!important;}
+.note{color:#725a35!important;}
+.box,.dailyBox,.clientCard,.historyCard,.invoiceCard,.timeCardModule,.reminderModule,.timeDateGroup{
+  background:linear-gradient(180deg,rgba(255,255,255,.66),rgba(255,247,227,.58))!important;
+  border:1px solid rgba(183,154,99,.62)!important;
+  box-shadow:var(--atl-soft-shadow)!important;
+}
+.trackers{gap:10px!important;}
+.tracker{
+  background:linear-gradient(145deg,#251b15,#0f0d0b)!important;
+  border:1px solid rgba(212,165,55,.28)!important;
+  box-shadow:0 10px 22px rgba(0,0,0,.22)!important;
+}
+.tracker b{color:#d4a537!important;}
+.monthBtn,.calendarTitle button{
+  background:linear-gradient(145deg,#2c2721,#111)!important;
+  border-color:rgba(212,165,55,.26)!important;
+}
+.monthBtn.active{
+  background:linear-gradient(145deg,#24a566,#126b41)!important;
+  color:#fff8e8!important;
+}
+.calendarTitle h2:before,.calendarTitle h2:after{content:"";display:inline-block;width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--atl-gold));vertical-align:middle;margin:0 14px 7px;opacity:.85}
+.calendarTitle h2:after{background:linear-gradient(90deg,var(--atl-gold),transparent)}
+.weekdays div{color:#6e5431!important;letter-spacing:.08em;}
+.calDay{
+  background:rgba(255,253,247,.55)!important;
+  border-color:rgba(215,189,130,.72)!important;
+}
+.calDay.today{outline:2px solid rgba(212,165,55,.9)!important;background:#fff9e9!important;}
+.calDay.selected{outline:2px solid #167246!important;background:linear-gradient(145deg,#e0f3e4,#fff9e8)!important;}
+.preview{background:rgba(212,165,55,.13)!important;color:#3a2617!important;}
+.subtabs{gap:4px!important;}
+.subtab{
+  background:linear-gradient(180deg,#fff5d8,#e7ca83)!important;
+  color:#291b10!important;
+  border:1px solid rgba(108,76,22,.2)!important;
+  box-shadow:0 -6px 12px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.6)!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+}
+.subtab.active{
+  background:linear-gradient(180deg,#1c814f,#14613d)!important;
+  color:#fff8e8!important;
+  box-shadow:0 -8px 18px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+.sideTabs{filter:drop-shadow(8px 10px 15px rgba(0,0,0,.32));}
+.sideTab{
+  color:#2a1b10!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.35)!important;
+  background:linear-gradient(90deg,#8f6219,#d4a537 58%,#f4d986)!important;
+  border:1px solid rgba(65,42,10,.25)!important;
+  box-shadow:6px 6px 14px rgba(0,0,0,.35),inset -6px 0 8px rgba(255,255,255,.22),inset 4px 0 7px rgba(70,40,0,.16)!important;
+}
+.sideTab.active{
+  background:linear-gradient(90deg,#c89527,#f0cf77 58%,#fff2b7)!important;
+  color:#20150d!important;
+  filter:saturate(1.1) brightness(1.08)!important;
+}
+.sideTab[data-section="schedule"]:before{content:"▦";font-size:20px;margin-bottom:8px;}
+.sideTab[data-section="clients"]:before{content:"♙";font-size:19px;margin-bottom:8px;}
+.sideTab[data-section="supplies"]:before{content:"◇";font-size:19px;margin-bottom:8px;}
+.sideTab[data-section="banking"]:before{content:"▤";font-size:19px;margin-bottom:8px;}
+.sideTab[data-section="studio"]:before{content:"✎";font-size:19px;margin-bottom:8px;}
+body:has(.sideTab.active) .paper{border-color:rgba(212,165,55,.76)!important;}
+body:has(.sideTab.active) .subtab.active{background:linear-gradient(180deg,#1c814f,#14613d)!important;}
+.supplyHeader,.supplyRowList,.lineItem,.receiptLine,.agendaRow,.taskRow,.timeLogRow,.reminderRow{
+  background:rgba(255,253,247,.68)!important;
+  border-color:rgba(183,154,99,.52)!important;
+}
+.invoiceCard.paid{background:linear-gradient(180deg,#e6f5dc,#faffee)!important;}
+.invoiceCard.partial{background:linear-gradient(180deg,#fff2bc,#fff9e8)!important;}
+.invoiceCard.unpaid{background:linear-gradient(180deg,#ffe1d7,#fff7ef)!important;}
+.scratchModule{
+  background:linear-gradient(180deg,#fff8e8,#fff0cf)!important;
+  border:1px solid rgba(212,165,55,.72)!important;
+  box-shadow:0 16px 35px rgba(54,35,8,.18), inset 0 1px 0 rgba(255,255,255,.75)!important;
+}
+.scratchModule h2:before{content:"✐ ";color:#167246;}
+.scratchCanvasBox{
+  background:
+    radial-gradient(circle at 1px 1px, rgba(183,154,99,.13) 1px, transparent 0),
+    #fffdf7!important;
+  background-size:18px 18px!important;
+  border:1px solid rgba(183,154,99,.55)!important;
+}
+.scratchToolbarCompact .toolBtn,.scratchActionsCompact button,.scratchPopover button,.uploadBtnCompact{
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#fffdf7,#f2e2bd)!important;
+  color:#2a1b10!important;
+  border:1px solid rgba(183,154,99,.5)!important;
+  box-shadow:0 5px 12px rgba(54,35,8,.12)!important;
+}
+.scratchToolbarCompact .toolBtn.active,.scratchPopover button.active{
+  background:linear-gradient(145deg,#1f8a55,#0e6a3e)!important;
+  color:#fff8e8!important;
+}
+.scratchActionsCompact button.save{background:linear-gradient(145deg,#1f8a55,#0e6a3e)!important;color:#fff8e8!important;}
+.scratchActionsCompact button:not(.save){background:linear-gradient(145deg,#2b2722,#111)!important;color:#fff8e8!important;}
+.timeStatus{background:#21170d!important;color:#d4a537!important;border:1px solid rgba(212,165,55,.36)!important;}
+.photo,.signature{border-color:rgba(183,154,99,.72)!important;box-shadow:var(--atl-soft-shadow)!important;}
+@media(max-width:720px){
+  header{padding:10px 8px!important;}
+  .brandMark{width:38px;height:38px;flex-basis:38px;border-radius:13px;font-size:27px;}
+  h1{letter-spacing:.08em!important;}
+  .headerActions{gap:5px;}
+  .headerActions button{padding:9px 10px!important;font-size:13px!important;}
+  .calendarTitle h2:before,.calendarTitle h2:after{width:22px;margin:0 7px 6px;}
+  .subtab{font-size:16px!important;}
+}
+
+/* ===== V48 SUPPLY + TAB + SKETCH CONTROL FIXES ===== */
+/* Keep all 5 section tabs reachable on phone with a tighter soft overlap. */
+.binder{grid-template-columns:minmax(0,1fr) 70px !important;}
+.sideTabs{min-height:560px !important;overflow:visible !important;}
+.sideTab{height:124px !important;width:70px !important;right:0 !important;font-size:17px !important;}
+.sideTab.active{width:76px !important;right:-5px !important;}
+.sideTabs .sideTab:nth-child(1){top:0px !important;z-index:10 !important;}
+.sideTabs .sideTab:nth-child(2){top:105px !important;z-index:9 !important;}
+.sideTabs .sideTab:nth-child(3){top:210px !important;z-index:8 !important;}
+.sideTabs .sideTab:nth-child(4){top:315px !important;z-index:7 !important;}
+.sideTabs .sideTab:nth-child(5){top:420px !important;z-index:6 !important;}
+.sideTab:before{font-size:16px !important;margin-bottom:5px !important;}
+
+/* Make supply autosave/math fields feel intentional. */
+#sPricePerUnit[readonly]{background:#fff7db !important;font-weight:700;color:#167246 !important;}
+#sRemaining{background:#fffdf7 !important;font-weight:700;}
+
+/* Extra polish for the new opacity control. */
+.stylePopover label{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;}
+.stylePopover input[type="range"]{min-height:34px !important;padding:4px !important;}
+.colorWheelWrap label{grid-template-columns:auto auto auto;}
+
+@media(max-width:720px){
+  .binder{grid-template-columns:minmax(0,1fr) 64px !important;}
+  .sideTab{height:112px !important;width:64px !important;font-size:15px !important;letter-spacing:.4px !important;}
+  .sideTab.active{width:70px !important;right:-5px !important;}
+  .sideTabs .sideTab:nth-child(1){top:0px !important;}
+  .sideTabs .sideTab:nth-child(2){top:95px !important;}
+  .sideTabs .sideTab:nth-child(3){top:190px !important;}
+  .sideTabs .sideTab:nth-child(4){top:285px !important;}
+  .sideTabs .sideTab:nth-child(5){top:380px !important;}
+}
+
+@media(max-height:740px){
+  .sideTab{height:102px !important;font-size:14px !important;}
+  .sideTabs .sideTab:nth-child(1){top:0px !important;}
+  .sideTabs .sideTab:nth-child(2){top:86px !important;}
+  .sideTabs .sideTab:nth-child(3){top:172px !important;}
+  .sideTabs .sideTab:nth-child(4){top:258px !important;}
+  .sideTabs .sideTab:nth-child(5){top:344px !important;}
+}

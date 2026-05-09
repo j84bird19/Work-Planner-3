@@ -1,12 +1,11 @@
-const CACHE='ahtelleeay-v50-1-vertical-tabs';
+const CACHE='ahtelleeay-v48-brand-identity';
 const ASSETS=[
   './',
+  './index.html?v=48',
   './index.html',
   './manifest.json',
-  './style-v50_1.css?v=50.1',
-  './style-v50_1.css',
-  './app-v50_1.js?v=50.1',
-  './app-v50_1.js',
+  './style-v48.css?v=48',
+  './app-v48.js?v=48',
   './icon-192.png',
   './icon-512.png'
 ];
@@ -22,17 +21,11 @@ self.addEventListener('fetch',event=>{
   const url=new URL(req.url);
   if(req.mode==='navigate'){
     event.respondWith(fetch(req).then(res=>{
-      const copy=res.clone();
-      caches.open(CACHE).then(cache=>cache.put('./index.html',copy));
-      return res;
-    }).catch(()=>caches.match('./index.html')));
+      const copy=res.clone();caches.open(CACHE).then(cache=>cache.put('./index.html',copy));return res;
+    }).catch(()=>caches.match('./index.html?v=48').then(r=>r||caches.match('./index.html'))));
     return;
   }
   if(url.origin===location.origin){
-    event.respondWith(caches.match(req).then(cached=>cached||fetch(req).then(res=>{
-      const copy=res.clone();
-      caches.open(CACHE).then(cache=>cache.put(req,copy));
-      return res;
-    }).catch(()=>cached)));
+    event.respondWith(caches.match(req).then(cached=>cached||fetch(req).then(res=>{const copy=res.clone();caches.open(CACHE).then(cache=>cache.put(req,copy));return res}).catch(()=>cached)));
   }
 });
